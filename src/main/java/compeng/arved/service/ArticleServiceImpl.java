@@ -3,7 +3,7 @@ package compeng.arved.service;
 import compeng.arved.domain.Article;
 import compeng.arved.payload.ArticlePayload;
 import compeng.arved.repository.ArticleRepository;
-import compeng.arved.repository.StaffRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -13,22 +13,21 @@ import java.util.Optional;
 @Service
 public class ArticleServiceImpl implements ArticleService{
     private final ArticleRepository articleRepository;
-    private final StaffRepository staffRepository;
 
-    public ArticleServiceImpl(ArticleRepository articleRepository, StaffRepository staffRepository) {
+    @Autowired
+    public ArticleServiceImpl(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
-        this.staffRepository = staffRepository;
     }
 
     @Override
     public List<Article> getArticles(Authentication authentication) {
-
+        String email = authentication.getName();
         return null;
     }
 
     @Override
     public Article save(Article article) {
-        return null;
+        return articleRepository.save(article);
     }
 
     @Override
@@ -43,7 +42,7 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Override
     public void deleteById(String id) {
-
+        articleRepository.deleteById(id);
     }
 
     @Override

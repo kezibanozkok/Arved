@@ -1,21 +1,19 @@
-package compeng.arved.domain;
+package compeng.arved.payload;
 
+import compeng.arved.domain.Article;
+import compeng.arved.domain.Project;
+import compeng.arved.domain.StaffInformation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Document(collection = "users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Staff {
+public class UserPayload {
 
-    @Id
-    private String id;
     private String name;
     private String surname;
     private String email;
@@ -25,4 +23,5 @@ public class Staff {
     private StaffInformation staffInformation;
     private List<Article> articles;
     private List<Project> projects;
+    private Long role;
 }

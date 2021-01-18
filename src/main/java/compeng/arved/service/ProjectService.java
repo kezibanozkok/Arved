@@ -1,8 +1,6 @@
 package compeng.arved.service;
 
-import compeng.arved.domain.Article;
 import compeng.arved.domain.Project;
-import compeng.arved.payload.ArticlePayload;
 import compeng.arved.payload.ProjectPayload;
 import org.springframework.security.core.Authentication;
 

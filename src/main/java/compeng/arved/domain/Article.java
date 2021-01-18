@@ -3,11 +3,16 @@ package compeng.arved.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.Binary;
+import org.springframework.data.annotation.Id;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Article {
+
+    @Id
+    private String id;
     private String yayinTuru;
     private String endeksTuru;
     private String baslik;
@@ -19,5 +24,5 @@ public class Article {
     private int sayi;
     private int sayfa;
     private String doi;
-    //file ?
+    private Binary file;
 }
