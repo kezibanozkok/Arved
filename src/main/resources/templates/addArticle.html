@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Personel Bilgilerini Güncelle</title>
+    <title>Makale Ekle</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -19,12 +19,11 @@
     <![endif]-->
 </head>
 <body>
-
     <nav class="navbar navbar-light" style="background-color: #428bca; height: 72px">
         <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
              width="70" height="70" alt=""
              style="margin-left: 10px; margin-right: 200px"/>
-        <h3 style="margin-top: -50px; margin-left: 500px; color: white">ARVED</h3>
+        <h3 style="margin-top: -50px; margin-left: 600px; color: white">ARVED</h3>
     </nav>
     <nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
         <div class="input-group rounded" style="width: 500px; margin: auto; margin-top: 15px">
@@ -60,40 +59,82 @@
         </div>
     </nav>
 
-
     <nav class="navbar navbar-light" style="margin-top:15px; margin-left:200px; margin-right:200px; border-color: gainsboro">
-        <h4 style="margin-top: 30px; margin-left: 20px; margin-right: 20px; border-bottom-color: gainsboro; border-bottom-style: solid">Personel Bilgileri</h4>
-
-        <form class="form-horizontal" method="post" style="max-width:900px; margin-top: 70px; margin-left: auto; margin-right: auto">
+        <h4 style="margin-top: 30px; margin-left: 20px; margin-right: 20px; border-bottom-color: gainsboro; border-bottom-style: solid">Makale Bilgileri</h4>
+        <form class="form-horizontal" method="post" style="max-width:700px; margin-top: 80px; margin-left: auto; margin-right: auto">
             <div class="form-group">
-                <label for="wosHIndex" class="col-sm-2 control-label">WOS H Index</label>
+                <label for="yayinTuru" class="col-sm-2 control-label">Yayın Türü</label>
+                <select class="form-control" id="yayinTuru" name="yayinTuru" style="max-width: 576px; margin: 0 auto">
+                    <option>Ulusal Makale</option>
+                    <option>Ulusal Bildiri</option>
+                    <option>Uluslararası Makale</option>
+                    <option>Uluslararası Bildiri</option>
+                    <option>Patent</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="endeksTuru" class="col-sm-2 control-label">Endeks Türü</label>
+                <select class="form-control" id="endeksTuru" name="endeksTuru" style="max-width: 576px; margin: 0 auto">
+                    <option>SCI</option>
+                    <option>SCI-E</option>
+                    <option>SSCI</option>
+                    <option>A&HCI</option>
+                    <option>Scopus</option>
+                    <option>Diğer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="baslik" class="col-sm-2 control-label">Başlık</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="wosHIndex" name="wosHIndex"
-                           placeholder="">
+                    <input type="text" class="form-control" id="baslik" name="baslik" placeholder="">
                 </div>
             </div>
             <div class="form-group">
-                <label for="wosAtifSayisi" class="col-sm-2 control-label">WOS Atıf Sayısı</label>
+                <label for="yazarlar" class="col-sm-2 control-label">Yazarlar</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="wosAtifSayisi" name="wosAtifSayisi" placeholder="">
+                    <input type="text" class="form-control" id="yazarlar" name="yazarlar" placeholder="">
                 </div>
             </div>
             <div class="form-group">
-                <label for="scopusHIndex" class="col-sm-2 control-label">Scopus H Index</label>
+                <label for="date" class="col-sm-2 control-label">Tarih</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="scopusHIndex" name="scopusHIndex" placeholder="">
+                    <input type="date" class="form-control" id="date" name="date" placeholder="">
                 </div>
             </div>
             <div class="form-group">
-                <label for="scopusAtifSayisi" class="col-sm-2 control-label">Scopus Atıf Sayısı</label>
+                <label for="dergiAdi" class="col-sm-2 control-label">Dergi Adı</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="scopusAtifSayisi" name="scopusAtifSayisi" placeholder="">
+                    <input type="text" class="form-control" id="dergiAdi" name="dergiAdi" placeholder="">
                 </div>
             </div>
             <div class="form-group">
-                <label for="uzmanlikAlani" class="col-sm-2 control-label">Uzmanlık Alanı</label>
+                <label for="konferans" class="col-sm-2 control-label">Konferans</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="uzmanlikAlani" name="uzmanlikAlani" placeholder="">
+                    <input type="text" class="form-control" id="konferans" name="konferans" placeholder="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cilt" class="col-sm-2 control-label">Cilt</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="cilt" name="cilt" placeholder="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="sayi" class="col-sm-2 control-label">Sayi</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="sayi" name="sayi" placeholder="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="sayfa" class="col-sm-2 control-label">Sayfa</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="sayfa" name="sayfa" placeholder="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="doi" class="col-sm-2 control-label">DOİ</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="doi" name="doi" placeholder="">
                 </div>
             </div>
             <div class="form-group">
@@ -105,8 +146,6 @@
             </div>
         </form>
     </nav>
-
-
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

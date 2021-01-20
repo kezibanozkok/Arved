@@ -19,39 +19,40 @@
     <![endif]-->
 </head>
 <body>
-<div class="container">
-    <nav class="navbar navbar-light" style="background-color: cornflowerblue;">
-        <img src="https://www.google.com/search?sxsrf=ALeKk01XqfweCP-pTa2WhjKb7YLDGWRWDg:1610985686277&source=univ&tbm=isch&q=ankara+%C3%BCniversitesi+logo+jpg&hl=tr&sa=X&ved=2ahUKEwix5MWs7aXuAhURHxoKHXHUB1gQjJkEegQIBhAB&biw=1336&bih=939#imgrc=h0FdE8YmIMI9tM"
+
+    <nav class="navbar navbar-light" style="background-color: #428bca; height: 72px">
+        <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
              width="70" height="70" alt=""
              style="margin-left: 10px; margin-right: 200px"/>
-        <h3 style="margin-top: -60px; margin-left: 500px">ARVED</h3>
+        <h3 style="margin-top: -50px; margin-left: 600px; color: white">ARVED</h3>
     </nav>
-    <form th:action="@{/login}" method="post" style="margin-top: 100px; margin-right: 400px; margin-left: 400px">
-        <div th:if="${param.error}" class="alert alert-danger">Invalid email or password</div>
-        <div th:if="${param.logout}" class="alert alert-success">You have been logged out</div>
-        <h3 style="margin-left: 100px">Giriş Yap</h3>
-        <div class="form-group">
-            <label for="email"></label>
-            <input type="text" class="form-control form-control-lg" id="email" name="email" autofocus="autofocus"
-                   placeholder="Email*"/> <br/>
-        </div>
-        <div class="form-group">
-            <label for="password"></label>
-            <input type="password" class="form-control form-control-lg" id="password" name="password"
-                   placeholder="Password*"/> <br/>
-        </div>
-        <button type="submit"
-                style="width: 340px; margin-right: 400px; margin-left: 0; color: white; color-rendering: auto; background-color: gray"
-                class="btn btn-default">Login
-        </button>
-        <h1></h1>
-        <div>
-            <ul class="nav nav-tabs">
-                <li role="presentation"><a href="/registration">Hesabınız yok mu? Kaydolun</a></li>
-            </ul>
-        </div>
-    </form>
-
+    <nav class="navbar navbar-light" style="margin-top:15px; margin-left:400px; margin-right:400px; border-color: gainsboro">
+        <form th:action="@{/login}" method="post" style="margin-top: 50px; margin-right: 50px; margin-left: 50px" >
+            <div th:if="${param.error}" class="alert alert-danger">Geçersiz eposta ya da şifre</div>
+            <div th:if="${param.logout}" class="alert alert-success">Çıkış Yapıldı</div>
+            <h3 style="margin-left: 150px">Giriş Yap</h3>
+            <div class="form-group">
+                <label for="email"></label>
+                <input type="text" class="form-control form-control-lg" id="email" name="email" autofocus="autofocus"
+                       placeholder="Email*"/> <br/>
+            </div>
+            <div class="form-group">
+                <label for="password"></label>
+                <input type="password" class="form-control form-control-lg" id="password" name="password"
+                       placeholder="Şifre*"/> <br/>
+            </div>
+            <button type="submit"
+                    style="margin-left:160px; color: white; color-rendering: auto; background-color: #428bca"
+                    class="btn btn-default">Giriş Yap
+            </button>
+            <h1></h1>
+            <div>
+                <ul class="nav nav-tabs" >
+                    <li role="presentation"><a href="/registration">Hesabınız yok mu? Kaydolun</a></li>
+                </ul>
+            </div>
+        </form>
+    </nav>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"
             integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
@@ -60,6 +61,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
             integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
             crossorigin="anonymous"></script>
-</div>
+
 </body>
 </html>

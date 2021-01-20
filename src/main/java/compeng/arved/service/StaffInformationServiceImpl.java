@@ -40,7 +40,13 @@ public class StaffInformationServiceImpl implements StaffInformationService{
     }
 
     @Override
-    public void update(StaffInformationPayload staffInformationPayload) {
-
+    public void update(StaffInformationPayload staffInformationPayload, Authentication authentication) {
+        String email = authentication.getName();
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            StaffInformation staffInformation = new StaffInformation(null,staffInformationPayload.getWosHIndex(), staffInformationPayload.getWosAtifSayisi(), staffInformationPayload.getScopusHIndex(), staffInformationPayload.getScopusAtifSayisi(), staffInformationPayload.getUzmanlikAlani());
+            user.setStaffInformation(staffInformation);
+        }
     }
 }

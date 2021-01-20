@@ -47,6 +47,6 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Override
     public Optional<Article> findById(String id) {
-        return Optional.empty();
+        return articleRepository.findById(id);
     }
 }

@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.Binary;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Data
 @AllArgsConstructor
@@ -17,12 +19,12 @@ public class Article {
     private String endeksTuru;
     private String baslik;
     private String yazarlar;
-    private String date;
+    private String tarih;
     private String dergiAdi;
     private String konferans;
     private int cilt;
     private int sayi;
     private int sayfa;
     private String doi;
-    private Binary file;
+    //private Binary file;
 }

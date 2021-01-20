@@ -13,5 +13,5 @@ public interface StaffInformationService {
     StaffInformation save(StaffInformation staffInformation);
 
     //staff information is updated
-    void update(StaffInformationPayload staffInformationPayload);
+    void update(StaffInformationPayload staffInformationPayload, Authentication authentication);
 }

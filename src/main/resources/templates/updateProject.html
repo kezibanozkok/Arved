@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Personel Bilgilerini Güncelle</title>
+    <title>Proje Güncelleme</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -19,7 +19,6 @@
     <![endif]-->
 </head>
 <body>
-
     <nav class="navbar navbar-light" style="background-color: #428bca; height: 72px">
         <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
              width="70" height="70" alt=""
@@ -60,53 +59,113 @@
         </div>
     </nav>
 
-
     <nav class="navbar navbar-light" style="margin-top:15px; margin-left:200px; margin-right:200px; border-color: gainsboro">
-        <h4 style="margin-top: 30px; margin-left: 20px; margin-right: 20px; border-bottom-color: gainsboro; border-bottom-style: solid">Personel Bilgileri</h4>
-
-        <form class="form-horizontal" method="post" style="max-width:900px; margin-top: 70px; margin-left: auto; margin-right: auto">
+        <h4 style="margin-top: 30px; margin-left: 20px; margin-right: 20px; border-bottom-color: gainsboro; border-bottom-style: solid">Proje Bilgilerini Güncelle</h4>
+        <form class="form-horizontal" method="post" style="max-width:900px; margin-top: 80px; margin-left: auto; margin-right: auto">
             <div class="form-group">
-                <label for="wosHIndex" class="col-sm-2 control-label">WOS H Index</label>
+                <label for="projeAdi" class="col-sm-2 control-label">Proje Adı</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="wosHIndex" name="wosHIndex"
-                           placeholder="">
+                    <input type="text" class="form-control" id="projeAdi" name="projeAdi" placeholder="">
                 </div>
             </div>
             <div class="form-group">
-                <label for="wosAtifSayisi" class="col-sm-2 control-label">WOS Atıf Sayısı</label>
+                <label for="projeYurutucusu" class="col-sm-2 control-label">Proje Yürütücüsü</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="wosAtifSayisi" name="wosAtifSayisi" placeholder="">
+                    <input type="text" class="form-control" id="projeYurutucusu" name="projeYurutucusu" placeholder="">
                 </div>
             </div>
             <div class="form-group">
-                <label for="scopusHIndex" class="col-sm-2 control-label">Scopus H Index</label>
+                <label for="projeninAmaci" class="col-sm-2 control-label">Projenin Amacı</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="scopusHIndex" name="scopusHIndex" placeholder="">
+                    <input type="text" class="form-control" id="projeninAmaci" name="projeninAmaci" placeholder="">
                 </div>
             </div>
             <div class="form-group">
-                <label for="scopusAtifSayisi" class="col-sm-2 control-label">Scopus Atıf Sayısı</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="scopusAtifSayisi" name="scopusAtifSayisi" placeholder="">
+                <label for="projeDurumu" class="col-sm-2 control-label">Proje Durumu</label>
+                <select class="form-control" id="projeDurumu" name="projeDurumu" style="max-width: 200px; margin-left: 10px">
+                    <option>Tamamlandı</option>
+                    <option>Devam Ediyor</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="kurumIciProje" class="col-sm-2 control-label">Kurum İçi Proje</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="kurumIciProje">
+                    <label class="form-check-label" for="kurumIciProje">
+                    </label>
                 </div>
             </div>
             <div class="form-group">
-                <label for="uzmanlikAlani" class="col-sm-2 control-label">Uzmanlık Alanı</label>
+                <label for="uluslararasiProje" class="col-sm-2 control-label">Uluslararası Proje</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="uluslararasiProje">
+                    <label class="form-check-label" for="uluslararasiProje">
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="projeTuru" class="col-sm-2 control-label">Proje Türü</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="uzmanlikAlani" name="uzmanlikAlani" placeholder="">
+                    <input type="text" class="form-control" id="projeTuru" name="projeTuru" placeholder="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="alanBilgisi" class="col-sm-2 control-label">Alan Bilgisi</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="alanBilgisi" name="alanBilgisi" placeholder="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="projeButcesi" class="col-sm-2 control-label">Proje Bütçesi</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="projeButcesi" name="projeButcesi" placeholder="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="paraBirimi" class="col-sm-2 control-label">Para Birimi</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="paraBirimi" name="paraBirimi" placeholder="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="kontratliProje" class="col-sm-2 control-label">Kontratlı Proje</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="kontratliProje">
+                    <label class="form-check-label" for="kontratliProje">
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="disDestekliProje" class="col-sm-2 control-label">Dış Destekli Proje</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="disDestekliProje">
+                    <label class="form-check-label" for="disDestekliProje">
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="uluslararasiIsbirlikliProje" class="col-sm-2 control-label">Uluslararası İşbirlikli Proje</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="uluslararasiIsbirlikliProje">
+                    <label class="form-check-label" for="uluslararasiIsbirlikliProje">
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="arastirmaciSayisi" class="col-sm-2 control-label">Araştırmacı Sayısı</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="arastirmaciSayisi" name="arastirmaciSayisi" placeholder="">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-default"
-                            style="color: white; color-rendering: auto; background-color: #428bca">Kaydet
+                            style="color: white; color-rendering: auto; background-color: gray">Kaydet
                     </button>
                 </div>
             </div>
         </form>
     </nav>
-
-
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
