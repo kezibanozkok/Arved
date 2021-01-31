@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.TextIndexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 public class User {
 
-    @MongoId
+    @Id
     private String id;
     private String name;
     private String surname;
@@ -28,9 +29,14 @@ public class User {
     private String password;
     private String image;
     private String department;
+
+    @DBRef
     private StaffInformation staffInformation;
-    @TextIndexed
+
+    @DBRef
     private List<Article> articles;
+
+    @DBRef
     private List<Project> projects;
     private List<Role> roles;
 }

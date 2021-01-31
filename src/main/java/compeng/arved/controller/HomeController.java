@@ -7,7 +7,6 @@ import compeng.arved.service.ArticleService;
 import compeng.arved.service.ProjectService;
 import compeng.arved.service.StaffInformationService;
 import compeng.arved.service.UserService;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -15,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/home")
 public class HomeController {
 
     private final StaffInformationService staffInformationService;
@@ -30,16 +30,10 @@ public class HomeController {
         this.userService = userService;
     }
 
-    /*
-    @GetMapping(value = {"/", "/home"})
-    public String homePage() {
-        return "home";
-    }*/
-
-    @GetMapping(value = {"/", "/home"})
+    @GetMapping()
     public String getStaffInformation(Model model, Authentication authentication) {
         model.addAttribute("staffInformation", userService.getStaffInformation(authentication));
-        model.addAttribute("articles", userService.getArticles(authentication));
+        model.addAttribute("articles", articleService.getUserArticles(authentication));
         model.addAttribute("projects", userService.getProjects(authentication));
         return "home";
     }
@@ -52,28 +46,6 @@ public class HomeController {
     @PostMapping("/updateInformation")
     public String updateStaffInformation(@ModelAttribute StaffInformationPayload staffInformationPayload, Authentication authentication) {
         userService.updateStaffInformation(staffInformationPayload, authentication);
-        return "redirect:/home";
-    }
-
-    @GetMapping("/addArticle")
-    public String addArticlePage() {
-        return "addArticle";
-    }
-
-    @PostMapping("/addArticle")
-    public String addArticle(@ModelAttribute ArticlePayload articlePayload, Authentication authentication) {
-        userService.addArticle(articlePayload, authentication);
-        return "redirect:/home";
-    }
-
-    @GetMapping("/updateArticle/{id}")
-    public String updateArticlePage() {
-        return "updateArticle";
-    }
-
-    @PostMapping("/updateArticle/{id}")
-    public String updateArticle(@ModelAttribute ArticlePayload articlePayload, Authentication authentication, @PathVariable String id) {
-        userService.updateArticle(articlePayload, authentication, id);
         return "redirect:/home";
     }
 

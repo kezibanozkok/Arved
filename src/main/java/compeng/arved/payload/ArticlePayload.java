@@ -13,7 +13,7 @@ public class ArticlePayload {
     private String endeksTuru;
     private String baslik;
     private String yazarlar;
-    private String date;
+    private int yil;
     private String dergiAdi;
     private String konferans;
     private int cilt;

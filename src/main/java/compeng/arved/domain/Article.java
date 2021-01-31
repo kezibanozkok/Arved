@@ -3,11 +3,10 @@ package compeng.arved.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bson.types.Binary;
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.MongoId;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "articles")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +18,7 @@ public class Article {
     private String endeksTuru;
     private String baslik;
     private String yazarlar;
-    private String tarih;
+    private int yil;
     private String dergiAdi;
     private String konferans;
     private int cilt;

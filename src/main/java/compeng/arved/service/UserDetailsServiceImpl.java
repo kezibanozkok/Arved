@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -42,8 +43,11 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void register(UserPayload userPayload) {
+        StaffInformation staffInformation = new StaffInformation();
+        List<Article> articleList = new ArrayList<>();
+        List<Project> projectList = new ArrayList<>();
         Role role = new Role();
-        role.setId(Long.parseLong("55"));
+        role.setId(Long.parseLong("1"));
         role.setName("USER");
         List<Role> roles = new ArrayList<>();
         roles.add(role);
@@ -106,10 +110,9 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
         Optional<User> optionalUser = userRepository.findByEmail(email);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            //ObjectId id = new ObjectId();
-            StaffInformation staffInformation = new StaffInformation(null,staffInformationPayload.getWosHIndex(), staffInformationPayload.getWosAtifSayisi(), staffInformationPayload.getScopusHIndex(), staffInformationPayload.getScopusAtifSayisi(), staffInformationPayload.getUzmanlikAlani());
+            StaffInformation staffInformation = new StaffInformation(null, staffInformationPayload.getWosHIndex(), staffInformationPayload.getWosAtifSayisi(), staffInformationPayload.getScopusHIndex(), staffInformationPayload.getScopusAtifSayisi(), staffInformationPayload.getUzmanlikAlani());
             user.setStaffInformation(staffInformation);
-            //userRepository.save(user);
+            mongoTemplate.save(user, "users");
         }
     }
 
@@ -125,7 +128,7 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
         }
     }
 
-    @Override
+    /*@Override
     public void addArticle(ArticlePayload articlePayload, Authentication authentication) {
         String email = authentication.getName();
         Optional<User> optionalUser = userRepository.findByEmail(email);
@@ -134,13 +137,14 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
             Article article = new Article(null, articlePayload.getYayinTuru(), articlePayload.getEndeksTuru(), articlePayload.getBaslik(), articlePayload.getYazarlar(), articlePayload.getDate(), articlePayload.getDergiAdi(),
                     articlePayload.getKonferans(), articlePayload.getCilt(), articlePayload.getSayi(), articlePayload.getSayfa(), articlePayload.getDoi());
             List<Article> articleList = new ArrayList<>();
+            articleList = user.getArticles();
             articleList.add(article);
             user.setArticles(articleList);
-            userRepository.save(user);
+            mongoTemplate.save(user, "users");
         }
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void updateArticle(ArticlePayload articlePayload, Authentication authentication, String id) {
         String email = authentication.getName();
         Optional<User> optionalUser = userRepository.findByEmail(email);
@@ -148,9 +152,7 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
             User user = optionalUser.get();
 
         }
-
-
-    }
+    }*/
 
     @Override
     public List<Project> getProjects(Authentication authentication) {
@@ -170,12 +172,13 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
         Optional<User> optionalUser = userRepository.findByEmail(email);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            Project project = new Project(null, projectPayload.getProjeAdi(), projectPayload.getProjeYurutucusu(), projectPayload.getProjeninAmaci(), projectPayload.getProjeDurumu(), false, false, projectPayload.getProjeTuru(), projectPayload.getAlanBilgisi(), projectPayload.getProjeButcesi(),
-                    projectPayload.getParaBirimi(), false, false, false, projectPayload.getArastirmaciSayisi());
+            Project project = new Project(null, projectPayload.getProjeAdi(), projectPayload.getProjeYurutucusu(), projectPayload.getProjeninAmaci(), projectPayload.getProjeDurumu(), projectPayload.isKurumIciProje(), projectPayload.isUluslararasiProje(), projectPayload.getProjeTuru(), projectPayload.getAlanBilgisi(), projectPayload.getProjeButcesi(),
+                    projectPayload.getParaBirimi(), projectPayload.isKontratliProje(), projectPayload.isDisDestekliProje(), projectPayload.isUluslararasiIsbirlikliProje(), projectPayload.getArastirmaciSayisi());
             List<Project> projectList = new ArrayList<>();
+            projectList = user.getProjects();
             projectList.add(project);
             user.setProjects(projectList);
-            userRepository.save(user);
+            mongoTemplate.save(user, "users");
         }
     }
 
