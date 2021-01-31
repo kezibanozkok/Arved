@@ -34,7 +34,7 @@ public class HomeController {
     public String getStaffInformation(Model model, Authentication authentication) {
         model.addAttribute("staffInformation", userService.getStaffInformation(authentication));
         model.addAttribute("articles", articleService.getUserArticles(authentication));
-        model.addAttribute("projects", userService.getProjects(authentication));
+        model.addAttribute("projects", projectService.getUserProjects(authentication));
         return "home";
     }
 
@@ -49,7 +49,7 @@ public class HomeController {
         return "redirect:/home";
     }
 
-    @GetMapping("/addProject")
+    /*@GetMapping("/addProject")
     public String addProjectPage() {
         return "addProject";
     }
@@ -69,7 +69,7 @@ public class HomeController {
     public String updateProject(@ModelAttribute ProjectPayload projectPayload, Authentication authentication, @PathVariable String id) {
         userService.updateProject(projectPayload, authentication, id);
         return "redirect:/home";
-    }
+    }*/
 
     /*
     @GetMapping("/403")

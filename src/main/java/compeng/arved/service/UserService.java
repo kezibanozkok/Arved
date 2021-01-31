@@ -26,6 +26,6 @@ public interface UserService {
     //void updateArticle (ArticlePayload articlePayload, Authentication authentication, String id);
     //void deleteArticle(String id);
     List<Project> getProjects(Authentication authentication);
-    void addProject (ProjectPayload projectPayload, Authentication authentication);
-    void updateProject (ProjectPayload projectPayload, Authentication authentication, String id);
+    //void addProject (ProjectPayload projectPayload, Authentication authentication);
+    //void updateProject (ProjectPayload projectPayload, Authentication authentication, String id);
 }

@@ -166,7 +166,7 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
         }
     }
 
-    @Override
+    /*@Override
     public void addProject(ProjectPayload projectPayload, Authentication authentication) {
         String email = authentication.getName();
         Optional<User> optionalUser = userRepository.findByEmail(email);
@@ -180,12 +180,12 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
             user.setProjects(projectList);
             mongoTemplate.save(user, "users");
         }
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void updateProject(ProjectPayload projectPayload, Authentication authentication, String id) {
 
-    }
+    }*/
     /*
     @Override
     public void deleteArticleById(String id) {

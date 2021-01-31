@@ -9,9 +9,9 @@ import java.util.Optional;
 
 public interface ProjectService {
 
-    List<Project> getProjects(Authentication authentication);
+    List<Project> getUserProjects(Authentication authentication);
     Project save (Project project);
-    void add(ProjectPayload projectPayload);
+    void add(ProjectPayload projectPayload, Authentication authentication);
     void update(ProjectPayload projectPayload, String id);
     void deleteById(String id);
     Optional<Project> findById(String id);
