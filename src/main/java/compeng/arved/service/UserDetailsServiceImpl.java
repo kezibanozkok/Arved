@@ -43,7 +43,7 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void register(UserPayload userPayload) {
-        StaffInformation staffInformation = new StaffInformation();
+        //StaffInformation staffInformation = new StaffInformation();
         List<Article> articleList = new ArrayList<>();
         List<Project> projectList = new ArrayList<>();
         Role role = new Role();
@@ -51,7 +51,7 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
         role.setName("USER");
         List<Role> roles = new ArrayList<>();
         roles.add(role);
-        User user = new User(null, userPayload.getName(), userPayload.getSurname(), userPayload.getEmail(), userPayload.getPassword(), null, null, null, null, null, roles);
+        User user = new User(null, userPayload.getName(), userPayload.getSurname(), userPayload.getEmail(), userPayload.getPassword(), null, null, null, articleList, projectList, roles);
         userRepository.save(user);
     }
 
@@ -104,7 +104,7 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
         }
     }
 
-    @Override
+    /*@Override
     public void updateStaffInformation(StaffInformationPayload staffInformationPayload, Authentication authentication) {
         String email = authentication.getName();
         Optional<User> optionalUser = userRepository.findByEmail(email);
@@ -114,7 +114,7 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
             user.setStaffInformation(staffInformation);
             mongoTemplate.save(user, "users");
         }
-    }
+    }*/
 
     @Override
     public List<Article> getArticles(Authentication authentication) {
@@ -184,12 +184,6 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
 
     /*@Override
     public void updateProject(ProjectPayload projectPayload, Authentication authentication, String id) {
-
-    }*/
-    /*
-    @Override
-    public void deleteArticleById(String id) {
-
 
     }*/
 }

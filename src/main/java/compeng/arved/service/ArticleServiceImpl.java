@@ -1,14 +1,20 @@
 package compeng.arved.service;
 
+import com.mongodb.BasicDBObject;
 import compeng.arved.domain.Article;
 import compeng.arved.domain.User;
 import compeng.arved.payload.ArticlePayload;
 import compeng.arved.repository.ArticleRepository;
 import compeng.arved.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,6 +24,9 @@ import java.util.stream.Stream;
 public class ArticleServiceImpl implements ArticleService{
     private final ArticleRepository articleRepository;
     private final UserRepository userRepository;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     @Autowired
     public ArticleServiceImpl(ArticleRepository articleRepository, UserRepository userRepository) {
@@ -51,7 +60,11 @@ public class ArticleServiceImpl implements ArticleService{
         Optional<User> optionalUser = userRepository.findByEmail(email);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            user.setArticles(Stream.of(article).collect(Collectors.toList()));
+            List<Article> articleList = new ArrayList<>();
+            articleList = user.getArticles();
+            articleList.add(article);
+            user.setArticles(articleList);
+            //user.setArticles(Stream.of(article).collect(Collectors.toList()));
             userRepository.save(user);
         }
 
@@ -85,7 +98,12 @@ public class ArticleServiceImpl implements ArticleService{
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
 
-            userRepository.save(user);
+            /*Query query = Query.query(Criteria.where("articles").elemMatch(Criteria.where("id").is(id)));
+            Update update = new Update().pull("articles", new BasicDBObject("articles.id", id));
+            mongoTemplate.updateMulti(query, update, User.class);*/
+
+
+            //userRepository.save(user);
         }
     }
 

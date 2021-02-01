@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -50,7 +51,11 @@ public class ProjectServiceImpl implements ProjectService{
         Optional<User> optionalUser = userRepository.findByEmail(email);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            user.setProjects(Stream.of(project).collect(Collectors.toList()));
+            List<Project> projectList = new ArrayList<>();
+            projectList = user.getProjects();
+            projectList.add(project);
+            user.setProjects(projectList);
+            //user.setProjects(Stream.of(project).collect(Collectors.toList()));
             userRepository.save(user);
         }
     }

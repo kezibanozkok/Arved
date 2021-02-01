@@ -23,7 +23,7 @@ public class StaffInformationServiceImpl implements StaffInformationService{
     }
 
     @Override
-    public StaffInformation getInformation(Authentication authentication) {
+    public StaffInformation getStaffInformation(Authentication authentication) {
         String email = authentication.getName();
         Optional<User> optionalUser = userRepository.findByEmail(email);
         if (optionalUser.isPresent()) {
@@ -45,8 +45,21 @@ public class StaffInformationServiceImpl implements StaffInformationService{
         Optional<User> optionalUser = userRepository.findByEmail(email);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            StaffInformation staffInformation = new StaffInformation(null,staffInformationPayload.getWosHIndex(), staffInformationPayload.getWosAtifSayisi(), staffInformationPayload.getScopusHIndex(), staffInformationPayload.getScopusAtifSayisi(), staffInformationPayload.getUzmanlikAlani());
-            user.setStaffInformation(staffInformation);
+            if (user.getStaffInformation() == null) {
+                StaffInformation staffInformation = new StaffInformation(null, staffInformationPayload.getWosHIndex(), staffInformationPayload.getWosAtifSayisi(), staffInformationPayload.getScopusHIndex(), staffInformationPayload.getScopusAtifSayisi(), staffInformationPayload.getUzmanlikAlani());
+                staffInformationRepository.save(staffInformation);
+                user.setStaffInformation(staffInformation);
+                userRepository.save(user);
+            } else {
+                StaffInformation staffInformation = user.getStaffInformation();
+                staffInformation.setWosHIndex(staffInformationPayload.getWosHIndex());
+                staffInformation.setWosAtifSayisi(staffInformationPayload.getWosAtifSayisi());
+                staffInformation.setScopusHIndex(staffInformationPayload.getScopusHIndex());
+                staffInformation.setScopusAtifSayisi(staffInformationPayload.getScopusAtifSayisi());
+                staffInformation.setUzmanlikAlani(staffInformationPayload.getUzmanlikAlani());
+                staffInformationRepository.save(staffInformation);
+            }
+
         }
     }
 }

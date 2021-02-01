@@ -20,7 +20,7 @@ public interface UserService {
     void changePassword(UserPayload userPayload, String id);
     Optional<User> findByEmail(String email);
     StaffInformation getStaffInformation(Authentication authentication);
-    void updateStaffInformation(StaffInformationPayload staffInformationPayload, Authentication authentication);
+    //void updateStaffInformation(StaffInformationPayload staffInformationPayload, Authentication authentication);
     List<Article> getArticles(Authentication authentication);
     //void addArticle (ArticlePayload articlePayload, Authentication authentication);
     //void updateArticle (ArticlePayload articlePayload, Authentication authentication, String id);
