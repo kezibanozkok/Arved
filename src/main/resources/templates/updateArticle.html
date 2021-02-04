@@ -57,36 +57,41 @@
     <h4 style="margin-top: 30px; margin-left: 20px; margin-right: 20px; border-bottom-color: gainsboro; border-bottom-style: solid">Makale Bilgilerini Güncelle</h4>
     <form class="form-horizontal" method="post" style="max-width: 700px; margin-top: 80px; margin-left: auto; margin-right: auto">
         <div class="form-group">
-            <label for="yayinTuru" class="col-sm-2 control-label">Yayın Türü</label>
-            <select class="form-control" id="yayinTuru" name="yayinTuru" style="max-width: 576px; margin: 0 auto">
-                <option>Ulusal Makale</option>
-                <option>Ulusal Bildiri</option>
-                <option>Uluslararası Makale</option>
-                <option>Uluslararası Bildiri</option>
-                <option>Patent</option>
-            </select>
+            <label for="uluslararasiYayin" class="col-sm-2 control-label">Uluslararası Yayın</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="uluslararasiYayin">
+                <label class="form-check-label" for="uluslararasiYayin">
+                </label>
+            </div>
         </div>
         <div class="form-group">
             <label for="endeksTuru" class="col-sm-2 control-label">Endeks Türü</label>
             <select class="form-control" id="endeksTuru" name="endeksTuru" style="max-width: 576px; margin: 0 auto">
                 <option>SCI</option>
-                <option>SCI-E</option>
                 <option>SSCI</option>
                 <option>A&HCI</option>
-                <option>Scopus</option>
+                <option>SCOPUS</option>
                 <option>Diğer</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="baslik" class="col-sm-2 control-label">Başlık</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="baslik" name="baslik" placeholder="">
+            <label for="uluslararasiIsbirlikli" class="col-sm-2 control-label">Uluslararası İşbirlikli</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="uluslararasiIsbirlikli">
+                <label class="form-check-label" for="uluslararasiIsbirlikli">
+                </label>
             </div>
         </div>
         <div class="form-group">
-            <label for="yazarlar" class="col-sm-2 control-label">Yazarlar</label>
+            <label for="makaleAdi" class="col-sm-2 control-label">Makale Adı</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="yazarlar" name="yazarlar" placeholder="">
+                <input type="text" class="form-control" id="makaleAdi" name="makaleAdi" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dergiAdi" class="col-sm-2 control-label">Dergi Adı</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="dergiAdi" name="dergiAdi" placeholder="">
             </div>
         </div>
         <div class="form-group">
@@ -95,44 +100,54 @@
                 <option>2021</option>
                 <option>2020</option>
                 <option>2019</option>
-                <option>2018I</option>
+                <option>2018</option>
                 <option>2017</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="dergiAdi" class="col-sm-2 control-label">Dergi Adı</label>
+            <label for="cilt_volume" class="col-sm-2 control-label">Cilt</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="dergiAdi" name="dergiAdi" aria-placeholder="" >
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="konferans" class="col-sm-2 control-label">Konferans</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="konferans" name="konferans" placeholder="">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="cilt" class="col-sm-2 control-label">Cilt</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" id="cilt" name="cilt" placeholder="">
+                <input type="text" class="form-control" id="cilt_volume" name="cilt_volume" placeholder="">
             </div>
         </div>
         <div class="form-group">
             <label for="sayi" class="col-sm-2 control-label">Sayi</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" id="sayi" name="sayi" placeholder="">
+                <input type="text" class="form-control" id="sayi" name="sayi" placeholder="">
             </div>
         </div>
         <div class="form-group">
-            <label for="sayfa" class="col-sm-2 control-label">Sayfa</label>
+            <label for="sayfaNumarasi" class="col-sm-2 control-label">Sayfa</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" id="sayfa" name="sayfa" placeholder="">
+                <input type="text" class="form-control" id="sayfaNumarasi" name="sayfaNumarasi" placeholder="">
             </div>
         </div>
         <div class="form-group">
             <label for="doi" class="col-sm-2 control-label">DOİ</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="doi" name="doi" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="bap" class="col-sm-2 control-label">BAP</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="bap">
+                <label class="form-check-label" for="bap">
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="kurumDisiYazar" class="col-sm-2 control-label">Kurum Dışı Yazar</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="kurumDisiYazar">
+                <label class="form-check-label" for="kurumDisiYazar">
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="yazarListesi" class="col-sm-2 control-label">Yazarlar</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="yazarListesi" name="yazarListesi" placeholder="">
             </div>
         </div>
         <div class="form-group">

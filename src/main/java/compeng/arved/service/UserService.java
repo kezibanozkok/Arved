@@ -19,13 +19,13 @@ public interface UserService {
     User save (User user);
     void changePassword(UserPayload userPayload, String id);
     Optional<User> findByEmail(String email);
-    StaffInformation getStaffInformation(Authentication authentication);
+    //StaffInformation getStaffInformation(Authentication authentication);
     //void updateStaffInformation(StaffInformationPayload staffInformationPayload, Authentication authentication);
-    List<Article> getArticles(Authentication authentication);
+    //List<Article> getArticles(Authentication authentication);
     //void addArticle (ArticlePayload articlePayload, Authentication authentication);
     //void updateArticle (ArticlePayload articlePayload, Authentication authentication, String id);
     //void deleteArticle(String id);
-    List<Project> getProjects(Authentication authentication);
+    //List<Project> getProjects(Authentication authentication);
     //void addProject (ProjectPayload projectPayload, Authentication authentication);
     //void updateProject (ProjectPayload projectPayload, Authentication authentication, String id);
 }

@@ -5,6 +5,7 @@ import compeng.arved.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -29,20 +30,26 @@ public class ArticleController {
         return "redirect:/home";
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/update/{makaleId}")
     public String updateArticlePage() {
         return "updateArticle";
     }
 
-    @PostMapping("/update/{id}")
-    public String updateArticle(@ModelAttribute ArticlePayload articlePayload, @PathVariable String id) {
-        articleService.update(articlePayload, id);
+    @PostMapping("/update/{makaleId}")
+    public String updateArticle(@ModelAttribute ArticlePayload articlePayload, @PathVariable String makaleId) {
+        articleService.update(articlePayload, makaleId);
         return "redirect:/home";
     }
 
-    @PostMapping("/delete/{id}")
-    public String deleteArticle(Authentication authentication, @PathVariable String id) {
-        articleService.deleteById(authentication, id);
+    @PostMapping("/delete/{makaleId}")
+    public String deleteArticle(@PathVariable String makaleId) {
+        articleService.deleteById(makaleId);
         return "redirect:/home";
+    }
+
+    @GetMapping("/allArticles")
+    public String getAllArticles(Model model) {
+        model.addAttribute("articles", articleService.getAllArticles());
+        return "allArticles";
     }
 }

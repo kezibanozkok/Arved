@@ -5,6 +5,7 @@ import compeng.arved.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -29,20 +30,26 @@ public class ProjectController {
         return "redirect:/home";
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/update/{projeId}")
     public String updateProjectPage() {
         return "updateProject";
     }
 
-    @PostMapping("/update/{id}")
-    public String updateProject(@ModelAttribute ProjectPayload projectPayload, @PathVariable String id) {
-        projectService.update(projectPayload, id);
+    @PostMapping("/update/{projeId}")
+    public String updateProject(@ModelAttribute ProjectPayload projectPayload, @PathVariable String projeId) {
+        projectService.update(projectPayload, projeId);
         return "redirect:/home";
     }
 
-    @PostMapping("/delete/{id}")
-    public String deleteProject(@PathVariable String id) {
-        projectService.deleteById(id);
+    @PostMapping("/delete/{projeId}")
+    public String deleteProject(@PathVariable String projeId) {
+        projectService.deleteById(projeId);
         return "redirect:/home";
+    }
+
+    @GetMapping("/allProjects")
+    public String getAllProjects(Model model) {
+        model.addAttribute("projects", projectService.getAllProjects());
+        return "allProjects";
     }
 }

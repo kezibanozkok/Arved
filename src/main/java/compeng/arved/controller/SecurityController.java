@@ -39,5 +39,4 @@ public class SecurityController {
         userService.register(userPayload);
         return "redirect:/login";
     }
-
 }

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "articles")
+@Document(collection = "Makale_Bilgileri")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,16 +14,21 @@ public class Article {
 
     @Id
     private String id;
-    private String yayinTuru;
+    private String makaleId;
+    private String userId;
+    private boolean uluslararasiYayin;
     private String endeksTuru;
-    private String baslik;
-    private String yazarlar;
-    private int yil;
+    private boolean uluslararasiIsbirlikli;
+    private String makaleAdi;
     private String dergiAdi;
-    private String konferans;
-    private int cilt;
-    private int sayi;
-    private int sayfa;
+    private String yil;
+    //private String konferans;
+    private String cilt_volume;
+    private String sayi;
+    private String sayfaNumarasi;
     private String doi;
+    private boolean bap;
+    private boolean kurumDisiYazar;
+    private String yazarListesi;
     //private Binary file;
 }

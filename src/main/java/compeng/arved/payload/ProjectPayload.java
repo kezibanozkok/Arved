@@ -3,24 +3,27 @@ package compeng.arved.payload;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProjectPayload {
 
-    private String projeAdi;
-    private String projeYurutucusu;
-    private String projeninAmaci;
+    private String userId;
+    private boolean bap;
+    private boolean uluslararasi;
+    private String yil;
     private String projeDurumu;
-    private boolean kurumIciProje;
-    private boolean uluslararasiProje;
     private String projeTuru;
     private String alanBilgisi;
-    private double projeButcesi;
+    private String projeAdi;
+    private String projeButcesi;
     private String paraBirimi;
     private boolean kontratliProje;
-    private boolean disDestekliProje;
-    private boolean uluslararasiIsbirlikliProje;
-    private int arastirmaciSayisi;
+    private boolean disDestekli;
+    private boolean uluslararasiIsbirlikli;
+    private String arastirmaciSayisi;
+    private String projeYurutucusu;
+    //private String projeninAmaci;
 }

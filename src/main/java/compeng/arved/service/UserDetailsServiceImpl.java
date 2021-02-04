@@ -1,44 +1,41 @@
 package compeng.arved.service;
 
 import compeng.arved.domain.*;
-import compeng.arved.payload.ArticlePayload;
-import compeng.arved.payload.ProjectPayload;
-import compeng.arved.payload.StaffInformationPayload;
 import compeng.arved.payload.UserPayload;
 import compeng.arved.repository.ArticleRepository;
+import compeng.arved.repository.StaffInformationRepository;
 import compeng.arved.repository.UserRepository;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class UserDetailsServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final ArticleRepository articleRepository;
+    private final StaffInformationRepository staffInformationRepository;
 
     @Autowired
     private MongoTemplate mongoTemplate;
 
     @Autowired
-    public UserDetailsServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder, ArticleRepository articleRepository) {
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public UserDetailsServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder, StaffInformationRepository staffInformationRepository) {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.articleRepository = articleRepository;
+        this.staffInformationRepository = staffInformationRepository;
     }
 
     @Override
@@ -51,7 +48,18 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
         role.setName("USER");
         List<Role> roles = new ArrayList<>();
         roles.add(role);
-        User user = new User(null, userPayload.getName(), userPayload.getSurname(), userPayload.getEmail(), userPayload.getPassword(), null, null, null, articleList, projectList, roles);
+
+        int leftLimit = 48; // numeral '0'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+
+        String userId = random.ints(leftLimit, rightLimit + 1)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+        User user = new User(null, userId, userPayload.getName(), userPayload.getSurname(), userPayload.getEmail(), bCryptPasswordEncoder.encode(userPayload.getPassword()));
         userRepository.save(user);
     }
 
@@ -70,29 +78,33 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
         return userRepository.findByEmail(email);
     }
 
+
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> optionalUser = userRepository.findByEmail(email);
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            List<String> roleList = new ArrayList<>();
-            user.getRoles().stream().forEach(role -> roleList.add(role.getName()));
+            //List<String> roleList = new ArrayList<>();
+            //user.getRoles().stream().forEach(role -> roleList.add(role.getName()));
+
+            //boolean result = passwordEncoder.matches(password_plan_text_here, encoded_password_here);
 
             return org.springframework.security.core.userdetails.User.builder()
                     .username(user.getEmail())
-                    .password(bCryptPasswordEncoder.encode(user.getPassword()))
+                    .password(user.getPassword())
                     .disabled(false)
                     .accountExpired(false)
                     .credentialsExpired(false)
-                    .roles(roleList.toArray(new String[0]))
+                    .roles()
                     .build();
         } else {
             throw new UsernameNotFoundException("not found");
         }
     }
 
-    @Override
+    /*@Override
     public StaffInformation getStaffInformation(Authentication authentication) {
         String email = authentication.getName();
         Optional<User> optionalUser = userRepository.findByEmail(email);
@@ -102,7 +114,7 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
         } else {
             return null;
         }
-    }
+    }*/
 
     /*@Override
     public void updateStaffInformation(StaffInformationPayload staffInformationPayload, Authentication authentication) {
@@ -116,7 +128,7 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
         }
     }*/
 
-    @Override
+    /*@Override
     public List<Article> getArticles(Authentication authentication) {
         String email = authentication.getName();
         Optional<User> optionalUser = userRepository.findByEmail(email);
@@ -126,7 +138,7 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
         } else {
             return null;
         }
-    }
+    }*/
 
     /*@Override
     public void addArticle(ArticlePayload articlePayload, Authentication authentication) {
@@ -154,7 +166,7 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
         }
     }*/
 
-    @Override
+    /*@Override
     public List<Project> getProjects(Authentication authentication) {
         String email = authentication.getName();
         Optional<User> optionalUser = userRepository.findByEmail(email);
@@ -164,7 +176,7 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
         } else {
             return null;
         }
-    }
+    }*/
 
     /*@Override
     public void addProject(ProjectPayload projectPayload, Authentication authentication) {

@@ -40,21 +40,19 @@
                 <i class="fas fa-search"></i>
             </span>
     </div>
-    <ul class="nav navbar" sec:authorize="isAuthenticated()" >
-        <form th:action="@{/logout}" method="post" style="max-width: 400px; margin-top: -35px; margin-left: 1660px">
-            <button class="btn btn-default" type="submit" value="Logout">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-right" fill="currentColor"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M11.646 11.354a.5.5 0 0 1 0-.708L14.293 8l-2.647-2.646a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0z"/>
-                    <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
-                    <path fill-rule="evenodd"
-                          d="M2 13.5A1.5 1.5 0 0 1 .5 12V4A1.5 1.5 0 0 1 2 2.5h7A1.5 1.5 0 0 1 10.5 4v1.5a.5.5 0 0 1-1 0V4a.5.5 0 0 0-.5-.5H2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-1.5a.5.5 0 0 1 1 0V12A1.5 1.5 0 0 1 9 13.5H2z"/>
-                </svg>
-                Çıkış
-            </button>
-        </form>
-    </ul>
+    <div class="dropdown" style="float: right; margin-top: -35px">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="true">
+            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+            <li><a href="/staff/allStaff">Tüm Personeller</a></li>
+            <li><a href="/article/allArticles">Tüm Makaleler</a></li>
+            <li><a href="/project/allProjects">Tüm Projeler</a></li>
+            <li><a href="/logout">Çıkış</a></li>
+        </ul>
+    </div>
 </nav>
 
 <main class="container">
@@ -88,7 +86,7 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th class="col">Başlık</th>
+                <th class="col">Makale Adı</th>
                 <th class="col">Yıl</th>
                 <th class="col"></th>
                 <th class="col"></th>
@@ -102,17 +100,23 @@
             </tr>
             </thead>
             <tbody>
+            <tr th:if="${articles.isEmpty()}">
+                <td colspan="2"> Makaleniz bulunmamaktadır. </td>
+            </tr>
             <tr th:each="article: ${articles}">
-                <td th:text="${article.baslik}">Table cell</td>
+                <td th:text="${article.makaleAdi}">Table cell</td>
                 <td th:text="${article.yil}">Table cell</td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><a th:href="@{'/article/update/' + ${article.id}}" target="_blank" class="btn btn-primary">
+                <td><a th:href="@{'/article/detail' + ${article.makaleId}}"  class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Detay</a>
+                </td>
+                <td><a th:href="@{'/article/update/' + ${article.makaleId}}" target="_blank" class="btn btn-primary">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Güncelle</a></td>
                 <td>
-                    <form th:action="'/article/delete/'+ ${article.id}" th:method="post">
+                    <form th:action="'/article/delete/'+ ${article.makaleId}" th:method="post">
                         <button class="btn btn-danger" type="submit">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Sil
                         </button>
@@ -129,7 +133,6 @@
                 <th class="col">Proje Adı</th>
                 <th class="col">Proje Türü</th>
                 <th class="col">Proje Durumu</th>
-                <th class="col">Projenin Amacı</th>
                 <th class="col"></th>
                 <th class="col"></th>
                 <th class="col"></th>
@@ -140,17 +143,19 @@
             </tr>
             </thead>
             <tbody>
+            <tr th:if="${projects.isEmpty()}">
+                <td colspan="2"> Projeniz bulunmamaktadır. </td>
+            </tr>
             <tr th:each="project: ${projects}">
                 <td th:text="${project.projeAdi}">Table cell</td>
                 <td th:text="${project.projeTuru}">Table cell</td>
                 <td th:text="${project.projeDurumu}">Table cell</td>
-                <td th:text="${project.projeninAmaci}">Table cell</td>
                 <td></td>
                 <td></td>
-                <td><a th:href="@{'/project/update/' + ${project.id}}" target="_blank" class="btn btn-primary" style="margin-right: 0">
+                <td><a th:href="@{'/project/update/' + ${project.projeId}}" target="_blank" class="btn btn-primary" style="margin-right: 0">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Güncelle</a></td>
                 <td>
-                    <form th:action="'/project/delete/' + ${project.id} "  th:method="post">
+                    <form th:action="'/project/delete/' + ${project.projeId} "  th:method="post">
                         <button class="btn btn-danger" type="submit">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Sil
                         </button>

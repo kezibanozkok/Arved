@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,10 +29,15 @@ public class StaffInformationServiceImpl implements StaffInformationService{
         Optional<User> optionalUser = userRepository.findByEmail(email);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            return user.getStaffInformation();
+            return staffInformationRepository.findStaffInformationByUserId(user.getId());
         } else {
             return null;
         }
+    }
+
+    @Override
+    public List<StaffInformation> getAllStaff() {
+        return staffInformationRepository.findAll();
     }
 
     @Override
@@ -43,15 +49,15 @@ public class StaffInformationServiceImpl implements StaffInformationService{
     public void update(StaffInformationPayload staffInformationPayload, Authentication authentication) {
         String email = authentication.getName();
         Optional<User> optionalUser = userRepository.findByEmail(email);
+
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            if (user.getStaffInformation() == null) {
-                StaffInformation staffInformation = new StaffInformation(null, staffInformationPayload.getWosHIndex(), staffInformationPayload.getWosAtifSayisi(), staffInformationPayload.getScopusHIndex(), staffInformationPayload.getScopusAtifSayisi(), staffInformationPayload.getUzmanlikAlani());
+            if (staffInformationRepository.findStaffInformationByUserId(user.getId()) == null) {
+                StaffInformation staffInformation = new StaffInformation(null, user.getId(), staffInformationPayload.getFullName(), staffInformationPayload.getWosHIndex(), staffInformationPayload.getWosAtifSayisi(), staffInformationPayload.getScopusHIndex(), staffInformationPayload.getScopusAtifSayisi(), staffInformationPayload.getUzmanlikAlani());
                 staffInformationRepository.save(staffInformation);
-                user.setStaffInformation(staffInformation);
-                userRepository.save(user);
             } else {
-                StaffInformation staffInformation = user.getStaffInformation();
+                StaffInformation staffInformation = staffInformationRepository.findStaffInformationByUserId(user.getId());
+                staffInformation.setFullName(staffInformationPayload.getFullName());
                 staffInformation.setWosHIndex(staffInformationPayload.getWosHIndex());
                 staffInformation.setWosAtifSayisi(staffInformationPayload.getWosAtifSayisi());
                 staffInformation.setScopusHIndex(staffInformationPayload.getScopusHIndex());
@@ -59,7 +65,6 @@ public class StaffInformationServiceImpl implements StaffInformationService{
                 staffInformation.setUzmanlikAlani(staffInformationPayload.getUzmanlikAlani());
                 staffInformationRepository.save(staffInformation);
             }
-
         }
     }
 }

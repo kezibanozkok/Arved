@@ -1,12 +1,8 @@
 package compeng.arved.controller;
 
-import compeng.arved.payload.ArticlePayload;
-import compeng.arved.payload.ProjectPayload;
-import compeng.arved.payload.StaffInformationPayload;
 import compeng.arved.service.ArticleService;
 import compeng.arved.service.ProjectService;
 import compeng.arved.service.StaffInformationService;
-import compeng.arved.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;

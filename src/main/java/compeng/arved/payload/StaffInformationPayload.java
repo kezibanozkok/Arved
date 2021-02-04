@@ -14,6 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 public class StaffInformationPayload {
 
+    private String userId;
+    private String fullName;
     private int wosHIndex;
     private int wosAtifSayisi;
     private int scopusHIndex;

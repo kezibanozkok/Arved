@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Personel Bilgilerini Güncelle</title>
+    <title>Tüm Makaleler</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -18,7 +21,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body class="container-fluid">
 
 <nav class="navbar navbar-light" style="background-color: #428bca; height: 72px">
     <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
@@ -54,60 +57,36 @@
     </ul>
 </nav>
 
-
-<nav class="navbar navbar-light" style="margin-top:70px; margin-left:300px; margin-right:300px; border-color: gainsboro">
-    <h4 style="margin-top: 30px; margin-left: 20px; margin-right: 20px; border-bottom-color: gainsboro; border-bottom-style: solid">Personel Bilgileri</h4>
-
-    <form class="form-horizontal" method="post" style="max-width:900px; margin-top: 70px; margin-left: auto; margin-right: auto">
-        <div class="form-group">
-            <label for="fullName" class="col-sm-2 control-label">Öğretim Elemanı</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="fullName" name="fullName" placeholder="">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="wosHIndex" class="col-sm-2 control-label">WOS H Index</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" id="wosHIndex" name="wosHIndex"
-                       placeholder="">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="wosAtifSayisi" class="col-sm-2 control-label">WOS Atıf Sayısı</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" id="wosAtifSayisi" name="wosAtifSayisi" placeholder="">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="scopusHIndex" class="col-sm-2 control-label">Scopus H Index</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" id="scopusHIndex" name="scopusHIndex" placeholder="">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="scopusAtifSayisi" class="col-sm-2 control-label">Scopus Atıf Sayısı</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" id="scopusAtifSayisi" name="scopusAtifSayisi" placeholder="">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="uzmanlikAlani" class="col-sm-2 control-label">Uzmanlık Alanı</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="uzmanlikAlani" name="uzmanlikAlani" placeholder="">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default"
-                        style="color: white; color-rendering: auto; background-color: #428bca">Kaydet
-                </button>
-            </div>
-        </div>
-    </form>
-</nav>
-
-
-
+<main class="container">
+    <div class="table table-bordered">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th class="col">Makale Adı</th>
+                <th class="col">Yazar</th>
+                <th class="col">Yıl</th>
+                <th class="col"></th>
+                <th class="col"></th>
+                <th class="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="article: ${articles}">
+                <td th:text="${article.makaleAdi}">Table cell</td>
+                <td th:text="${article.yazarListesi}">Table cell</td>
+                <td th:text="${article.yil}">Table cell</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a th:href="@{'/article/detail/' + ${article.id}}"  class="btn btn-primary">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Detay</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"

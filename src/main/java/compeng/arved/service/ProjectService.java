@@ -10,6 +10,8 @@ import java.util.Optional;
 public interface ProjectService {
 
     List<Project> getUserProjects(Authentication authentication);
+    List<Project> getAllProjects();
+    public List<Project> getProjectsByUserId(String userId);
     Project save (Project project);
     void add(ProjectPayload projectPayload, Authentication authentication);
     void update(ProjectPayload projectPayload, String id);
