@@ -18,9 +18,9 @@ public class UserController {
         this.staffInformationService = staffInformationService;
     }
 
-    @GetMapping("/allStaff")
+    /*@GetMapping("/allStaff")
     public String getAllProjects(Model model) {
         model.addAttribute("staff", staffInformationService.getAllStaff());
         return "allStaff";
-    }
+    }*/
 }

@@ -9,6 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @Controller
 @RequestMapping("/home")
 public class HomeController {
@@ -25,44 +30,22 @@ public class HomeController {
     }
 
     @GetMapping()
-    public String getStaffInformation(Model model, Authentication authentication) {
+    public String getHomePage(Model model, Authentication authentication) {
         model.addAttribute("staffInformation", staffInformationService.getStaffInformation(authentication));
         model.addAttribute("articles", articleService.getUserArticles(authentication));
         model.addAttribute("projects", projectService.getUserProjects(authentication));
         return "home";
     }
 
-    /*@GetMapping("/updateInformation")
-    public String updateStaffInformation() {
-        return "updateStaffInformation";
-    }
-
-    @PostMapping("/updateInformation")
-    public String updateStaffInformation(@ModelAttribute StaffInformationPayload staffInformationPayload, Authentication authentication) {
-        userService.updateStaffInformation(staffInformationPayload, authentication);
-        return "redirect:/home";
-    }*/
-
-    /*@GetMapping("/addProject")
-    public String addProjectPage() {
-        return "addProject";
-    }
-
-    @PostMapping("/addProject")
-    public String addProject(@ModelAttribute ProjectPayload projectPayload, Authentication authentication) {
-        userService.addProject(projectPayload, authentication);
-        return "redirect:/home";
-    }
-
-    @GetMapping("/updateProject/{id}")
-    public String updateProjectPage() {
-        return "updateProject";
-    }
-
-    @PostMapping("/updateProject/{id}")
-    public String updateProject(@ModelAttribute ProjectPayload projectPayload, Authentication authentication, @PathVariable String id) {
-        userService.updateProject(projectPayload, authentication, id);
-        return "redirect:/home";
+    /*@GetMapping()
+    public void loginPageRedirect(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
+    throws IOException, ServletException {
+        String email = authentication.getName();
+        if (email.equals("comptelgraf@ankara.edu.tr")) {
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "admin"));
+        } else {
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "home"));
+        }
     }*/
 
     /*

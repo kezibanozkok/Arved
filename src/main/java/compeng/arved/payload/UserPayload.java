@@ -1,12 +1,10 @@
 package compeng.arved.payload;
 
-import compeng.arved.domain.Article;
-import compeng.arved.domain.Project;
-import compeng.arved.domain.Role;
-import compeng.arved.domain.StaffInformation;
+import compeng.arved.domain.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.annotation.Id;
 
 import java.util.List;
@@ -24,5 +22,5 @@ public class UserPayload {
     private String password;
     //private String image;
     //private String department;
-    private List<Role> roles;
+    //private List<Role> roles;
 }

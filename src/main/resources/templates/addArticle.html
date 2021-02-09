@@ -19,14 +19,15 @@
     <![endif]-->
 </head>
 <body class="container-fluid">
-<nav class="navbar navbar-light" style="background-color: #428bca; height: 72px">
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 10px; margin-right: 200px"/>
-    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: -60px">ARVED</p>
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 1670px; margin-top: -80px"/>
+<nav class="navbar navbar-light" style="background-color: #003C70; height: 72px">
+    <img src="../static/images/AU_logo.png"
+         width="70" height="70" alt="" th:src="@{images/AU_logo.png}"
+         style="float: left"/>
+    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: 10px">Bilgisayar Mühendisliği
+        Araştırma Verilerinin Değerlendirilmesi Sistemi</p>
+    <img src="../static/images/muhendislik_fak_logo.png"
+         width="70" height="70" alt="" th:src="@{images/muhendislik_fak_logo.png}"
+         style="float: right; margin-top: -65px"/>
 </nav>
 <nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
     <div class="input-group rounded" style="width: 500px; margin: auto; margin-top: 15px">
@@ -52,10 +53,15 @@
         </form>
     </ul>
 </nav>
-
-<nav class="navbar navbar-light" style="margin-top:70px; margin-left:300px; margin-right:300px; border-color: gainsboro">
+<nav class="navbar navbar-light" style="width: 500px; margin: auto">
+    <div></div>
+</nav>
+<main class="container" style="width: 1100px; height:820px; border: 1px ridge #cecece">
     <h4 style="margin-top: 30px; margin-left: 20px; margin-right: 20px; border-bottom-color: gainsboro; border-bottom-style: solid">Makale Bilgileri</h4>
-    <form class="form-horizontal" method="post" style="max-width:700px; margin-top: 80px; margin-left: auto; margin-right: auto">
+    <nav class="navbar navbar-light" style="width: 500px; margin: auto">
+        <div></div>
+    </nav>
+    <form class="form-horizontal" method="post" style="width:900px; margin: auto">
         <div class="form-group">
             <label for="uluslararasiYayin" class="col-sm-2 control-label">Uluslararası Yayın</label>
             <div class="form-check">
@@ -66,7 +72,7 @@
         </div>
         <div class="form-group">
             <label for="endeksTuru" class="col-sm-2 control-label">Endeks Türü</label>
-            <select class="form-control" id="endeksTuru" name="endeksTuru" style="max-width: 576px; margin: 0 auto">
+            <select class="form-control" id="endeksTuru" name="endeksTuru" style="width: 745px; margin: 0 auto">
                 <option>SCI</option>
                 <option>SSCI</option>
                 <option>A&HCI</option>
@@ -96,7 +102,7 @@
         </div>
         <div class="form-group">
             <label for="yil" class="col-sm-2 control-label">Yıl</label>
-            <select class="form-control" id="yil" name="yil" style="max-width: 576px; margin: 0 auto">
+            <select class="form-control" id="yil" name="yil" style="width: 745px; margin: 0 auto">
                 <option>2021</option>
                 <option>2020</option>
                 <option>2019</option>
@@ -153,12 +159,12 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-default"
-                        style="color: white; color-rendering: auto; background-color: #428bca">Kaydet
+                        style="color: white; color-rendering: auto; background-color: #003C70">Kaydet
                 </button>
             </div>
         </div>
     </form>
-</nav>
+</main>
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

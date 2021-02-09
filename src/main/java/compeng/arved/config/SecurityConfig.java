@@ -1,5 +1,6 @@
 package compeng.arved.config;
 
+import compeng.arved.handler.UserAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -16,10 +17,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private UserAuthenticationSuccessHandler successHandler;
+
     @Qualifier("userDetailsServiceImpl")
     @Autowired
     private UserDetailsService userDetailsService;
-
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -32,13 +35,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests(authorize -> authorize
                         .antMatchers("/login", "/registration").permitAll()
-                        .antMatchers("/home", "/").authenticated()
+                        .antMatchers("/home", "article/**", "project/**", "staffInformation/**").authenticated()
                 )
                 .formLogin(formLogin -> formLogin
+                        .successHandler(successHandler)
                         .loginPage("/login").permitAll()
                         .usernameParameter("email")
-                        .defaultSuccessUrl("/home")
-                        .failureUrl("/login?error").permitAll()
+                        .failureUrl("/login?error")
+                        .permitAll()
                 )
                 .logout()
                 .logoutUrl("/logout")

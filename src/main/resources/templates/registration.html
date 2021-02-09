@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,91 +19,81 @@
     <![endif]-->
 </head>
 <body class="container-fluid">
-<nav class="navbar navbar-light" style="background-color: #428bca; height: 72px">
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 10px; margin-right: 200px"/>
-    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: -60px">ARVED</p>
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 1670px; margin-top: -80px"/>
+<nav class="navbar navbar-light" style="background-color: #003C70; height: 72px">
+    <img src="../static/images/AU_logo.png"
+         width="70" height="70" alt="" th:src="@{images/AU_logo.png}"
+         style="float: left"/>
+    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: 10px">Bilgisayar Mühendisliği
+        Araştırma Verilerinin Değerlendirilmesi Sistemi</p>
+    <img src="../static/images/muhendislik_fak_logo.png"
+         width="70" height="70" alt="" th:src="@{images/muhendislik_fak_logo.png}"
+         style="float: right; margin-top: -65px"/>
 </nav>
 
-<nav class="navbar navbar-light" style="margin-top:70px; margin-left:600px; margin-right:600px; border-color: gainsboro">
-    <form class="form-horizontal" method="post" style="margin-top: 50px; max-width: 500px; margin-right: 60px; margin-left: 0px">
-        <h3 style="margin-left: 230px">Kayıt Ol</h3>
-        <div>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
-        </div>
+<nav class="navbar navbar-light" style="width: 500px; margin: auto">
+    <div class="alert alert-info" role="alert" th:text="${success}" th:if="${success}"></div>
+    <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+</nav>
+
+<main class="container" style="width: 600px; height:400px; border: 1px ridge #cecece">
+    <form th:action="@{/registration}" method="post" style="width: 500px; margin: auto">
+        <h3 style="margin-left: 190px">Kayıt Ol</h3>
+        <!--<div class="form-group">
+            <label for="email"></label>
+            <input type="text" class="form-control form-control-lg" id="email" name="email" autofocus="autofocus"
+                   placeholder="Email*"/> <br/>
+        </div>-->
         <div class="form-group">
-            <label for="name" class="col-sm-2 control-label"></label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="name" name="name"
+            <label for="name"></label>
+            <input type="text" class="form-control form-control-lg" id="name" name="name" autofocus="autofocus"
                        placeholder="İsim">
-            </div>
         </div>
-        <div><h1></h1>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
-        </div>
-        <div class="form-group">
+        <!--<div class="form-group">
             <label for="surname" class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="surname" name="surname"
                        placeholder="Soyisim">
             </div>
-        </div>
-        <div>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
-        </div>
+        </div>-->
         <div class="form-group">
+            <label for="surname"></label>
+            <input type="text" class="form-control form-control-lg" id="surname" name="surname" autofocus="autofocus"
+                   placeholder="Soyisim">
+        </div>
+        <!--<div class="form-group">
             <label for="email" class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="email" name="email"
                        placeholder="Email">
             </div>
-        </div>
-        <div>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
-        </div>
+        </div>-->
         <div class="form-group">
+            <label for="email"></label>
+            <input type="text" class="form-control form-control-lg" id="email" name="email" autofocus="autofocus"
+                   placeholder="Email">
+        </div>
+        <!--<div class="form-group">
             <label for="password" class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
                 <input type="password" class="form-control" id="password" name="password"
                        placeholder="Şifre">
             </div>
-        </div>
-        <div>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
-            <h1></h1>
+        </div>-->
+        <div class="form-group">
+            <label for="password"></label>
+            <input type="password" class="form-control form-control-lg" id="password" name="password" autofocus="autofocus"
+                   placeholder="Password">
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="text-center">
                 <button type="submit"
-                        style="margin-left:150px; color: white; color-rendering: auto; background-color: #428bca"
+                        style="color: white; color-rendering: auto; background-color: #003C70"
                         class="btn btn-default">Kayıt Ol
                 </button>
             </div>
         </div>
     </form>
-</nav>
+</main>
 
 
 

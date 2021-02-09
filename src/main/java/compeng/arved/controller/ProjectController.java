@@ -47,9 +47,9 @@ public class ProjectController {
         return "redirect:/home";
     }
 
-    @GetMapping("/allProjects")
+    /*@GetMapping("/allProjects")
     public String getAllProjects(Model model) {
         model.addAttribute("projects", projectService.getAllProjects());
         return "allProjects";
-    }
+    }*/
 }

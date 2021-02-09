@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public interface UserService {
 
-    void register(UserPayload userPayload);
+    boolean register(UserPayload userPayload);
     User save (User user);
     void changePassword(UserPayload userPayload, String id);
     Optional<User> findByEmail(String email);

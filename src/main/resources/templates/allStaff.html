@@ -47,20 +47,22 @@
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-            <li><a href="/staff/allStaff">Tüm Personeller</a></li>
-            <li><a href="/article/allArticles">Tüm Makaleler</a></li>
-            <li><a href="/project/allProjects">Tüm Projeler</a></li>
+            <li><a href="/admin/onayBekleyenler">Onay Bekleyenler</a></li>
+            <li><a href="/admin/allStaff">Tüm Personeller</a></li>
+            <li><a href="/admin/allArticles">Tüm Makaleler</a></li>
+            <li><a href="/admin/allProjects">Tüm Projeler</a></li>
             <li><a href="/logout">Çıkış</a></li>
         </ul>
     </div>
 </nav>
 
 <main class="container">
+    <h4>Tüm Personeller</h4>
     <div class="table table-bordered">
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Tüm Personeller</th>
+                <th>Personel Adı</th>
             </tr>
             </thead>
             <tbody>
@@ -68,7 +70,7 @@
                 <td th:text="${st.fullName}">Table cell</td>
                 <td><a th:href="@{'/staff/detail/' + ${st.userId}}" target="_blank" class="btn btn-primary" style="margin-right: 0">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Detay</a>
-                    <!-- Modal -->
+                    <!--&lt;!&ndash; Modal &ndash;&gt;
                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
@@ -90,7 +92,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </td>
             </tr>
             </tbody>

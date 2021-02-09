@@ -1,10 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
 <head>
-    <meta charset="UTF-8">
-    <title>Admin</title>
-</head>
-<body>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Anasayfa</title>
 
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="container-fluid">
+
+<nav class="navbar navbar-light" style="background-color: #428bca; height: 72px">
+    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
+         width="70" height="70" alt=""
+         style="margin-left: 10px; margin-right: 200px"/>
+    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: -60px">ARVED</p>
+    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
+         width="70" height="70" alt=""
+         style="margin-left: 1670px; margin-top: -80px"/>
+</nav>
+<nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
+    <div class="input-group rounded" style="width: 500px; margin: auto; margin-top: 15px">
+        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+               aria-describedby="search-addon" />
+        <span class="input-group-text border-0" id="search-addon">
+                <i class="fas fa-search"></i>
+            </span>
+    </div>
+    <div class="dropdown" style="float: right; margin-top: -35px">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="true">
+            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+            <li><a href="/admin/onayBekleyenler">Onay Bekleyenler</a></li>
+            <li><a href="/admin/allStaff">Tüm Personeller</a></li>
+            <li><a href="/admin/allArticles">Tüm Makaleler</a></li>
+            <li><a href="/admin/allProjects">Tüm Projeler</a></li>
+            <li><a href="/logout">Çıkış</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main class="container">
+    <h4>Onay Bekleyenler</h4>
+    <div class="table table-bordered">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th class="col">Ad</th>
+                <th class="col">Soyad</th>
+                <th class="col">Email</th>
+                <th class="col"></th>
+                <th class="col"></th>
+                <th class="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pa: ${pendingApproval}">
+                <td th:text="${pa.name}">Table cell</td>
+                <td th:text="${pa.surname}">Table cell</td>
+                <td th:text="${pa.email}">Table cell</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <form th:action="'/admin/onayBekleyenler/confirm/'+ ${pa.id}" th:method="post">
+                        <button class="btn btn-success" type="submit">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Onayla
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="'/admin/onayBekleyenler/delete/'+ ${pa.id}" th:method="post">
+                        <button class="btn btn-danger" type="submit">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Reddet
+                        </button>
+                </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
 </body>
 </html>

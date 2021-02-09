@@ -20,20 +20,27 @@
 </head>
 <body class="container-fluid">
 
-<nav class="navbar navbar-light" style="background-color: #428bca; height: 72px">
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 10px; margin-right: 200px"/>
-    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: -60px">ARVED</p>
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 1670px; margin-top: -80px"/>
+<nav class="navbar navbar-light" style="background-color: #003C70; height: 72px">
+    <img src="../static/images/AU_logo.png"
+         width="70" height="70" alt="" th:src="@{images/AU_logo.png}"
+         style="float: left"/>
+    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: 10px">Bilgisayar Mühendisliği
+        Araştırma Verilerinin Değerlendirilmesi Sistemi</p>
+    <img src="../static/images/muhendislik_fak_logo.png"
+         width="70" height="70" alt="" th:src="@{images/muhendislik_fak_logo.png}"
+         style="float: right; margin-top: -65px"/>
 </nav>
-<nav class="navbar navbar-light" style="margin-top:70px; margin-left:600px; margin-right:600px; border-color: gainsboro">
-    <form th:action="@{/login}" method="post" style="margin-top: 50px; margin-right: 50px; margin-left: 50px" >
-        <div th:if="${param.error}" class="alert alert-danger">Geçersiz eposta ya da şifre</div>
-        <div th:if="${param.logout}" class="alert alert-success">Çıkış Yapıldı</div>
-        <h3 style="margin-left: 180px">Giriş Yap</h3>
+<nav class="navbar navbar-light" style="width: 500px; margin: auto">
+    <div></div>
+    <div></div>
+</nav>
+<nav class="navbar navbar-light" style="width: 600px; margin: auto">
+    <div th:if="${param.error}" class="alert alert-danger">Geçersiz eposta ya da şifre</div>
+    <div th:if="${param.logout}" class="alert alert-success">Çıkış Yapıldı</div>
+</nav>
+<main class="container" style="width: 600px; height:350px; border: 1px ridge #cecece">
+    <form th:action="@{/login}" method="post" style="width: 500px; margin: auto">
+        <h3 style="margin-left: 190px">Giriş Yap</h3>
         <div class="form-group">
             <label for="email"></label>
             <input type="text" class="form-control form-control-lg" id="email" name="email" autofocus="autofocus"
@@ -44,18 +51,27 @@
             <input type="password" class="form-control form-control-lg" id="password" name="password"
                    placeholder="Şifre*"/> <br/>
         </div>
-        <button type="submit"
-                style="margin-left:190px; color: white; color-rendering: auto; background-color: #428bca"
+        <div class="form-group">
+            <div class="text-center">
+                <button type="submit"
+                        style="color: white; color-rendering: auto; background-color: #003C70"
+                        class="btn btn-default">Giriş Yap
+                </button>
+            </div>
+        </div>
+        <!--<button type="submit"
+                style="margin-left:190px; color: white; color-rendering: auto; background-color: #003C70"
                 class="btn btn-default">Giriş Yap
-        </button>
+        </button>-->
         <h1></h1>
         <div>
-            <ul class="nav nav-tabs" >
+            <!--<ul class="nav nav-tabs" >
                 <li role="presentation"><a href="/registration">Hesabınız yok mu? Kaydolun</a></li>
-            </ul>
+            </ul>-->
+            <p class="text-center">Hesabınız yok mu? <a href="/registration">Kaydolun</a></p>
         </div>
     </form>
-</nav>
+</main>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"
         integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"

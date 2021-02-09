@@ -3,6 +3,7 @@ package compeng.arved.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
@@ -23,4 +24,5 @@ public class User {
     //private String image;
     //private String department;
     //private List<Role> roles;
+
 }

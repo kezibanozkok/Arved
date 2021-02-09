@@ -19,14 +19,15 @@
     <![endif]-->
 </head>
 <body>
-<nav class="navbar navbar-light" style="background-color: #428bca; height: 72px">
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 10px; margin-right: 200px"/>
-    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: -60px">ARVED</p>
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 1670px; margin-top: -80px"/>
+<nav class="navbar navbar-light" style="background-color: #003C70; height: 72px">
+    <img src="../static/images/AU_logo.png"
+         width="70" height="70" alt="" th:src="@{images/AU_logo.png}"
+         style="float: left"/>
+    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: 10px">Bilgisayar Mühendisliği
+        Araştırma Verilerinin Değerlendirilmesi Sistemi</p>
+    <img src="../static/images/muhendislik_fak_logo.png"
+         width="70" height="70" alt="" th:src="@{images/muhendislik_fak_logo.png}"
+         style="float: right; margin-top: -65px"/>
 </nav>
 <nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
     <div class="input-group rounded" style="width: 500px; margin: auto; margin-top: 15px">
@@ -52,10 +53,16 @@
         </form>
     </ul>
 </nav>
-
-<nav class="navbar navbar-light" style="margin-top:70px; margin-left:300px; margin-right:300px; border-color: gainsboro">
+<nav class="navbar navbar-light" style="width: 500px; margin: auto">
+    <div></div>
+    <div></div>
+</nav>
+<main class="container" style="width: 1100px; height:850px; border: 1px ridge #cecece">
     <h4 style="margin-top: 30px; margin-left: 20px; margin-right: 20px; border-bottom-color: gainsboro; border-bottom-style: solid">Proje Bilgileri</h4>
-    <form class="form-horizontal" method="post" style="max-width:900px; margin-top: 80px; margin-left: auto; margin-right: auto">
+    <nav class="navbar navbar-light" style="width: 500px; margin: auto">
+        <div></div>
+    </nav>
+    <form class="form-horizontal" method="post" style="width:900px; margin: auto">
         <div class="form-group">
             <label for="projeAdi" class="col-sm-2 control-label">Proje Adı</label>
             <div class="col-sm-10">
@@ -70,14 +77,14 @@
         </div>
         <div class="form-group">
             <label for="projeDurumu" class="col-sm-2 control-label">Proje Durumu</label>
-            <select class="form-control" id="projeDurumu" name="projeDurumu" style="max-width: 200px; margin-left: 10px">
+            <select class="form-control" id="projeDurumu" name="projeDurumu" style="width: 745px; margin: auto">
                 <option>Tamamlandı</option>
                 <option>Devam Ediyor</option>
             </select>
         </div>
         <div class="form-group">
             <label for="yil" class="col-sm-2 control-label">Yıl</label>
-            <select class="form-control" id="yil" name="yil" style="max-width: 576px; margin: 0 auto">
+            <select class="form-control" id="yil" name="yil" style="width: 745px; margin: 0 auto">
                 <option>2021</option>
                 <option>2020</option>
                 <option>2019</option>
@@ -109,7 +116,7 @@
         </div>
         <div class="form-group">
             <label for="alanBilgisi" class="col-sm-2 control-label">Alan Bilgisi</label>
-            <select class="form-control" id="alanBilgisi" name="alanBilgisi" style="max-width: 200px; margin-left: 10px">
+            <select class="form-control" id="alanBilgisi" name="alanBilgisi" style="width: 745px; margin: auto">
                 <option>FEN</option>
                 <option>SAĞLIK</option>
                 <option>SOSYAL</option>
@@ -123,7 +130,7 @@
         </div>
         <div class="form-group">
             <label for="paraBirimi" class="col-sm-2 control-label">Para Birimi</label>
-            <select class="form-control" id="paraBirimi" name="paraBirimi" style="max-width: 200px; margin-left: 10px">
+            <select class="form-control" id="paraBirimi" name="paraBirimi" style="width: 745px; margin: auto">
                 <option>TL</option>
                 <option>Dolar</option>
                 <option>Euro</option>
@@ -162,13 +169,13 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-default"
-                        style="color: white; color-rendering: auto; background-color: #428bca">Kaydet
+                        style="color: white; color-rendering: auto; background-color: #003C70">Kaydet
 
                 </button>
             </div>
         </div>
     </form>
-</nav>
+</main>
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
