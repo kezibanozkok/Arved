@@ -37,17 +37,6 @@ public class HomeController {
         return "home";
     }
 
-    /*@GetMapping()
-    public void loginPageRedirect(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
-    throws IOException, ServletException {
-        String email = authentication.getName();
-        if (email.equals("comptelgraf@ankara.edu.tr")) {
-            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "admin"));
-        } else {
-            response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "home"));
-        }
-    }*/
-
     /*
     @GetMapping("/403")
     public String error() {

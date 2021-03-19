@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Raporlar</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <![endif]-->
+</head>
+<body class="container-fluid">
+
+<nav class="navbar navbar-light" style="background-color: #003C70; height: 72px">
+    <img src="../static/images/AU_logo.png"
+         width="70" height="70" alt="" th:src="@{/images/AU_logo.png}"
+         style="float: left"/>
+    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: 10px">Bilgisayar Mühendisliği
+        Araştırma Verilerinin Değerlendirilmesi Sistemi</p>
+    <img src="../static/images/muhendislik_fak_logo.png"
+         width="70" height="70" alt="" th:src="@{/images/muhendislik_fak_logo.png}"
+         style="float: right; margin-top: -65px"/>
+</nav>
+<nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
+    <div class="input-group rounded" style="width: 500px; margin: auto; margin-top: 15px">
+        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+               aria-describedby="search-addon" />
+        <span class="input-group-text border-0" id="search-addon">
+                <i class="fas fa-search"></i>
+            </span>
+    </div>
+    <div class="dropdown" style="float: right; margin-top: -35px">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="true">
+            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+            Menü
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+            <li><a href="/admin/onayBekleyenler">Onay Bekleyenler</a></li>
+            <li><a href="/admin/allStaff">Tüm Personeller</a></li>
+            <li><a href="/admin/allArticles">Tüm Makaleler</a></li>
+            <li><a href="/admin/allProjects">Tüm Projeler</a></li>
+            <li><a href="/logout">Çıkış</a></li>
+        </ul>
+    </div>
+</nav>
+<nav class="navbar navbar-light" style="width: 500px; margin: auto">
+    <div></div>
+    <div></div>
+</nav>
+<main class="container">
+    <div class = "panel panel-default">
+        <div class = "panel-heading">
+            <ul class = "nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#makale">Makale</a></li>
+                <li><a data-toggle="tab" href="#proje">Proje</a></li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <div id="makale" class="tab-pane fade in active">
+                <nav class="navbar navbar-light" style="width: 500px; margin: auto">
+                </nav>
+                <form class="form-horizontal" method="get" style="width:900px; margin: auto">
+                    <div class="form-group">
+                        <label for="yil" class="col-sm-2 control-label">Yıl</label>
+                        <select class="form-control" id="yil" name="yil" style="width: 745px; margin: 0 auto">
+                            <option value="all">Seçiniz</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="endeksTuru" class="col-sm-2 control-label">Endeks Türü</label>
+                        <select class="form-control" id="endeksTuru" name="endeksTuru" style="width: 745px; margin: 0 auto">
+                            <option value="all">Seçiniz</option>
+                            <option value="SCI">SCI</option>
+                            <option value="SSCI">SSCI</option>
+                            <option value="A&HCI">A&HCI</option>
+                            <option value="SCOPUS">SCOPUS</option>
+                            <option value="Diğer">Diğer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="uluslararasiYayin" class="col-sm-2 control-label">Uluslararası Yayın</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="uluslararasiYayin" value="true" >
+                            <label class="form-check-label" for="uluslararasiYayin">
+                            </label>
+                        </div>
+                        <div id="checkbox-value"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bap" class="col-sm-2 control-label">BAP Projesinden Üretilen Yayın</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="bap">
+                            <label class="form-check-label" for="bap">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default"
+                                    style="color: white; color-rendering: auto; background-color: #003C70">Listele
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="proje" class="tab-pane fade">
+                <nav class="navbar navbar-light" style="width: 500px; margin: auto">
+                </nav>
+                <form class="form-horizontal" method="get" style="width:900px; margin: auto">
+                    <div class="form-group">
+                        <label for="projeYil" class="col-sm-2 control-label">Yıl</label>
+                        <select class="form-control" id="projeYil" name="projeYil" style="width: 745px; margin: 0 auto">
+                            <option>Seçiniz</option>
+                            <option>2021</option>
+                            <option>2020</option>
+                            <option>2019</option>
+                            <option>2018</option>
+                            <option>2017</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="kurumIciProje" class="col-sm-2 control-label">Kurum İçi Proje(BAP)</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="true" id="kurumIciProje">
+                            <label class="form-check-label" for="kurumIciProje">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="uluslararasi" class="col-sm-2 control-label">Uluslararası Proje</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="uluslararasi">
+                            <label class="form-check-label" for="uluslararasi">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="kontratliProje" class="col-sm-2 control-label">Kontratlı Proje</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="kontratliProje">
+                            <label class="form-check-label" for="kontratliProje">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default"
+                                    style="color: white; color-rendering: auto; background-color: #003C70">Listele
+                            </button>
+                            <!--<a th:href="@{/admin/pdf}">
+                                <span>Download PDF Document</span>
+                            </a>-->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <a th:href="@{/admin/createReport/export/articlePdf}">Export to PDF</a>
+    <div class="table table-bordered">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th class="col">Makale Adı</th>
+                <th class="col">Yıl</th>
+                <th class="col">Yazar</th>
+                <th class="col">Endeks Türü</th>
+                <th class="col">Dergi Adı</th>
+                <th class="col">Cilt/Volume</th>
+                <th class="col">Sayı</th>
+                <th class="col">Sayfa</th>
+                <th class="col">Uluslararası Yayın</th>
+                <th class="col">Uluslararası İşbirlikli Yayın</th>
+                <th class="col">BAP Projesinden Üretilen Yayın</th>
+                <th class="col">DOİ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${articles.isEmpty()}">
+                <td colspan="2"> Bu kriterlere uygun makale bulunmamaktadır. </td>
+            </tr>
+            <tr th:each="article: ${articles}">
+                <td th:text="${article.makaleAdi}">Table cell</td>
+                <td th:text="${article.yil}">Table cell</td>
+                <td th:text="${article.yazarListesi}"></td>
+                <td th:text="${article.endeksTuru}"></td>
+                <td th:text="${article.dergiAdi}"></td>
+                <td th:text="${article.cilt_volume}"></td>
+                <td th:text="${article.sayi}"></td>
+                <td th:text="${article.sayfaNumarasi}"></td>
+                <td th:text="${article.uluslararasiYayin}"></td>
+                <td th:text="${article.uluslararasiIsbirlikli}"></td>
+                <td th:text="${article.bap}"></td>
+                <td th:text="${article.doi}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a th:href="@{/admin/createReport/export/projectPdf}">Export to PDF</a>
+    <div class="table table-bordered">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th class="col">Proje Adı</th>
+                <th class="col">Proje Yürütücüsü</th>
+                <th class="col">Yıl</th>
+                <th class="col">Proje Durumu</th>
+                <th class="col">Proje Türü</th>
+                <th class="col">Alan Bilgisi</th>
+                <th class="col">Proje Bütçesi</th>
+                <th class="col">Para Birimi</th>
+                <th class="col">BAP Projesi</th>
+                <th class="col">Uluslararası Proje</th>
+                <th class="col">Kontratlı Proje</th>
+                <th class="col">Dış Destekli</th>
+                <th class="col">Uluslararası İşbirlikli</th>
+                <th class="col">Araştırmacı Sayısı</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${projects.isEmpty()}">
+                <td colspan="2"> Bu kriterlere uygun proje bulunmamaktadır. </td>
+            </tr>
+            <tr th:each="project: ${projects}">
+                <td th:text="${project.projeAdi}">Table cell</td>
+                <td th:text="${project.projeYurutucusu}">Table cell</td>
+                <td th:text="${project.yil}"></td>
+                <td th:text="${project.projeDurumu}"></td>
+                <td th:text="${project.projeTuru}"></td>
+                <td th:text="${project.alanBilgisi}"></td>
+                <td th:text="${project.projeButcesi}"></td>
+                <td th:text="${project.paraBirimi}"></td>
+                <td th:text="${project.bap}"></td>
+                <td th:text="${project.uluslararasi}"></td>
+                <td th:text="${project.kontratliProje}"></td>
+                <td th:text="${project.disDestekli}"></td>
+                <td th:text="${project.uluslararasiIsbirlikli}"></td>
+                <td th:text="${project.arastirmaciSayisi}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
+</body>
+</html>

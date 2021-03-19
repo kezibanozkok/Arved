@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -17,14 +18,13 @@ import java.util.Random;
 public class ArticleServiceImpl implements ArticleService{
     private final ArticleRepository articleRepository;
     private final UserRepository userRepository;
+    private final MongoTemplate mongoTemplate;
 
     @Autowired
-    private MongoTemplate mongoTemplate;
-
-    @Autowired
-    public ArticleServiceImpl(ArticleRepository articleRepository, UserRepository userRepository) {
+    public ArticleServiceImpl(ArticleRepository articleRepository, UserRepository userRepository, MongoTemplate mongoTemplate) {
         this.articleRepository = articleRepository;
         this.userRepository = userRepository;
+        this.mongoTemplate = mongoTemplate;
     }
 
     @Override
@@ -106,4 +106,10 @@ public class ArticleServiceImpl implements ArticleService{
     public Optional<Article> findById(String id) {
         return articleRepository.findById(id);
     }
+
+    @Override
+    public List<Article> getReport(String yil, String endeksTuru, boolean uluslararasiYayin, boolean bap) {
+        return articleRepository.findArticlesByYilOrEndeksTuruOrUluslararasiYayinOrBap(yil, endeksTuru, uluslararasiYayin, bap);
+    }
+
 }

@@ -29,12 +29,12 @@
          width="70" height="70" alt="" th:src="@{images/muhendislik_fak_logo.png}"
          style="float: right; margin-top: -65px"/>
 </nav>
-
-<nav class="navbar navbar-light" style="width: 500px; margin: auto">
+<nav class="navbar navbar-light" style="width: 600px; margin: auto">
     <div class="alert alert-info" role="alert" th:text="${success}" th:if="${success}"></div>
     <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
 </nav>
-
+<nav class="navbar navbar-light" style="width: 500px; margin: auto">
+</nav>
 <main class="container" style="width: 600px; height:400px; border: 1px ridge #cecece">
     <form th:action="@{/registration}" method="post" style="width: 500px; margin: auto">
         <h3 style="margin-left: 190px">Kayıt Ol</h3>

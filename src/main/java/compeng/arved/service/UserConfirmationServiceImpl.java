@@ -1,7 +1,9 @@
 package compeng.arved.service;
 
+import compeng.arved.domain.StaffInformation;
 import compeng.arved.domain.User;
 import compeng.arved.domain.UserConfirmation;
+import compeng.arved.repository.StaffInformationRepository;
 import compeng.arved.repository.UserConfirmationRepository;
 import compeng.arved.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,13 @@ public class UserConfirmationServiceImpl implements UserConfirmationService{
     private final UserConfirmationRepository userConfirmationRepository;
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
+    private final StaffInformationRepository staffInformationRepository;
     @Autowired
-    public UserConfirmationServiceImpl(UserConfirmationRepository userConfirmationRepository, UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserConfirmationServiceImpl(UserConfirmationRepository userConfirmationRepository, UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder, StaffInformationRepository staffInformationRepository) {
         this.userConfirmationRepository = userConfirmationRepository;
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.staffInformationRepository = staffInformationRepository;
     }
 
     @Override
@@ -47,6 +50,7 @@ public class UserConfirmationServiceImpl implements UserConfirmationService{
                     .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                     .toString();
 
+            StaffInformation staffInformation = new StaffInformation(null, userId, "", 0, 0, 0, 0, "");
             user.setId(userId);
             user.setName(optionalUserConfirmation.get().getName());
             user.setSurname(optionalUserConfirmation.get().getSurname());
@@ -54,6 +58,7 @@ public class UserConfirmationServiceImpl implements UserConfirmationService{
             user.setPassword(bCryptPasswordEncoder.encode(optionalUserConfirmation.get().getPassword()));
             userRepository.save(user);
             userConfirmationRepository.deleteById(id);
+            staffInformationRepository.save(staffInformation);
         }
     }
 

@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Controller
 public class SecurityController {
@@ -40,7 +41,7 @@ public class SecurityController {
     }
 
     @PostMapping("/registration")
-    public String register(@ModelAttribute UserPayload userPayload, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+    public String register(@ModelAttribute @Valid UserPayload userPayload, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 
         if (userService.register(userPayload)) {
             redirectAttributes.addFlashAttribute("success", "Kayıt isteğiniz alınmıştır. Kaydınız onaylandıktan sonra giriş yapabilirsiniz.");

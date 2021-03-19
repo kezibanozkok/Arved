@@ -13,16 +13,19 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
           integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <![endif]-->
 </head>
 <body class="container-fluid">
-
 <nav class="navbar navbar-light" style="background-color: #003C70; height: 72px">
     <img src="../static/images/AU_logo.png"
          width="70" height="70" alt="" th:src="@{images/AU_logo.png}"
@@ -62,6 +65,7 @@
     <div></div>
 </nav>
 <main class="container">
+    <h4>Personel Bilgileri</h4>
     <div class="table table-bordered">
         <table class="table table-hover">
             <thead>
@@ -92,6 +96,7 @@
         <div></div>
         <div></div>
     </nav>
+    <h4>Makaleler</h4>
     <div class="table table-bordered">
         <table class="table table-hover">
             <thead>
@@ -122,15 +127,51 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><a th:href="@{'/article/detail' + ${article.makaleId}}"  class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter">
+                <td><a class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter"
+                       th:attr="data-target= '#exampleModalCenter' + ${article.makaleId}">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Detay</a>
+                    <!-- Button trigger modal -->
+                    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Detay
+                    </button>-->
+                    <!-- Modal -->
+                    <div class="modal fade" th:id="exampleModalCenter + ${article.makaleId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Makale Detayı</h5>
+                                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>-->
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-left" th:text="'Makale Adı: ' + ${article.makaleAdi}"></p>
+                                    <p class="text-left" th:text="'Yazarlar: ' + ${article.yazarListesi}"></p>
+                                    <p class="text-left" th:text="'Endeks Türü: ' + ${article.endeksTuru}"></p>
+                                    <p class="text-left" th:text="'Dergi Adı: ' + ${article.dergiAdi}"></p>
+                                    <p class="text-left" th:text="'Yıl: ' + ${article.yil}"></p>
+                                    <p class="text-left" th:text="'Cilt/Volume: ' + ${article.cilt_volume}"></p>
+                                    <p class="text-left" th:text="'Sayı: ' + ${article.sayi}"></p>
+                                    <p class="text-left" th:text="'Sayfa: ' + ${article.sayfaNumarasi}"></p>
+                                    <p class="text-left" th:text="'Uluslararası Yayın: ' + ${article.uluslararasiYayin}"></p>
+                                    <p class="text-left" th:text="'Uluslararası İşbirlikli Yayın: ' + ${article.uluslararasiIsbirlikli}"></p>
+                                    <p class="text-left" th:text="'BAP Projesinden Üretilen Yayın: ' + ${article.bap}"></p>
+                                    <p class="text-left" th:text="'Kurum Dışı Ortak Yazarlı: ' + ${article.kurumDisiYazar}"></p>
+                                    <p class="text-left" th:text="'DOİ: ' + ${article.doi}"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" style="background-color: #003C70" data-dismiss="modal">Kapat</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
                 <td><a th:href="@{'/article/update/' + ${article.makaleId}}" target="_blank" class="btn btn-primary" style="background-color: #003C70">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Güncelle</a></td>
                 <td>
                     <form th:action="'/article/delete/'+ ${article.makaleId}" th:method="post">
                         <button class="btn btn-danger" type="submit">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Sil
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Sil
                         </button>
                     </form>
                 </td>
@@ -142,6 +183,7 @@
         <div></div>
         <div></div>
     </nav>
+    <h4>Projeler</h4>
     <div class="table table-bordered">
         <table class="table table-hover">
             <thead>
@@ -149,6 +191,7 @@
                 <th class="col">Proje Adı</th>
                 <th class="col">Proje Türü</th>
                 <th class="col">Proje Durumu</th>
+                <th class="col"></th>
                 <th class="col"></th>
                 <th class="col"></th>
                 <th class="col"></th>
@@ -168,6 +211,42 @@
                 <td th:text="${project.projeDurumu}">Table cell</td>
                 <td></td>
                 <td></td>
+                <td><a class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter"
+                       th:attr="data-target= '#exampleModalCenter' + ${project.projeId}">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Detay</a>
+                    <!-- Modal -->
+                    <div class="modal fade" th:id="exampleModalCenter + ${project.projeId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalTitle">Proje Detayı</h5>
+                                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>-->
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-left" th:text="'Proje Adı: ' + ${project.projeAdi}"></p>
+                                    <p class="text-left" th:text="'Proje Yürütücüsü: ' + ${project.projeYurutucusu}"></p>
+                                    <p class="text-left" th:text="'Proje Türü: ' + ${project.projeTuru}"></p>
+                                    <p class="text-left" th:text="'Proje Durumu: ' + ${project.projeDurumu}"></p>
+                                    <p class="text-left" th:text="'Alan Bilgisi ' + ${project.alanBilgisi}"></p>
+                                    <p class="text-left" th:text="'Yıl: ' + ${project.yil}"></p>
+                                    <p class="text-left" th:text="'Proje Bütçesi: ' + ${project.projeButcesi}"></p>
+                                    <p class="text-left" th:text="'Para Birimi: ' + ${project.paraBirimi}"></p>
+                                    <p class="text-left" th:text="'Araştırmacı Sayısı: ' + ${project.arastirmaciSayisi}"></p>
+                                    <p class="text-left" th:text="'Kurum İçi Proje(BAP): ' + ${project.bap}"></p>
+                                    <p class="text-left" th:text="'Uluslararası Proje: ' + ${project.uluslararasi}"></p>
+                                    <p class="text-left" th:text="'Kontratlı Proje: ' + ${project.kontratliProje}"></p>
+                                    <p class="text-left" th:text="'Dış Destekli Proje: ' + ${project.disDestekli}"></p>
+                                    <p class="text-left" th:text="'Uluslararası İşbirlikli Proje: ' + ${project.uluslararasiIsbirlikli}"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" style="background-color: #003C70" data-dismiss="modal">Kapat</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
                 <td><a th:href="@{'/project/update/' + ${project.projeId}}" target="_blank" class="btn btn-primary" style="background-color: #003C70">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Güncelle</a></td>
                 <td>

@@ -17,4 +17,5 @@ public interface ProjectService {
     void update(ProjectPayload projectPayload, String id);
     void deleteById(String id);
     Optional<Project> findById(String id);
+    List<Project> getReport(String projeYil, boolean kurumIciProje, boolean uluslararasi, boolean kontratliProje);
 }

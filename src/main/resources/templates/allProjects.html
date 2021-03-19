@@ -23,14 +23,15 @@
 </head>
 <body class="container-fluid">
 
-<nav class="navbar navbar-light" style="background-color: #428bca; height: 72px">
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 10px; margin-right: 200px"/>
-    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: -60px">ARVED</p>
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 1670px; margin-top: -80px"/>
+<nav class="navbar navbar-light" style="background-color: #003C70; height: 72px">
+    <img src="../static/images/AU_logo.png"
+         width="70" height="70" alt="" th:src="@{/images/AU_logo.png}"
+         style="float: left"/>
+    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: 10px">Bilgisayar Mühendisliği
+        Araştırma Verilerinin Değerlendirilmesi Sistemi</p>
+    <img src="../static/images/muhendislik_fak_logo.png"
+         width="70" height="70" alt="" th:src="@{/images/muhendislik_fak_logo.png}"
+         style="float: right; margin-top: -65px"/>
 </nav>
 <nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
     <div class="input-group rounded" style="width: 500px; margin: auto; margin-top: 15px">
@@ -55,8 +56,12 @@
         </ul>
     </div>
 </nav>
-
+<nav class="navbar navbar-light" style="width: 500px; margin: auto">
+    <div></div>
+    <div></div>
+</nav>
 <main class="container">
+    <h4>Tüm Projeler</h4>
     <div class="table table-bordered">
         <table class="table table-hover">
             <thead>
@@ -78,8 +83,40 @@
                 <!--td th:text="${project.projeninAmaci}">Table cell</td-->
                 <td></td>
                 <td></td>
-                <td><a th:href="@{'/project/detail/' + ${project.id}}" target="_blank" class="btn btn-primary" style="margin-right: 0">
+                <td><a class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter"
+                       th:attr="data-target= '#exampleModalCenter' + ${project.projeId}">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Detay</a>
+                    <div class="modal fade" th:id="exampleModalCenter + ${project.projeId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalTitle">Proje Detayı</h5>
+                                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>-->
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-left" th:text="'Proje Adı: ' + ${project.projeAdi}"></p>
+                                    <p class="text-left" th:text="'Proje Yürütücüsü: ' + ${project.projeYurutucusu}"></p>
+                                    <p class="text-left" th:text="'Proje Türü: ' + ${project.projeTuru}"></p>
+                                    <p class="text-left" th:text="'Proje Durumu: ' + ${project.projeDurumu}"></p>
+                                    <p class="text-left" th:text="'Alan Bilgisi ' + ${project.alanBilgisi}"></p>
+                                    <p class="text-left" th:text="'Yıl: ' + ${project.yil}"></p>
+                                    <p class="text-left" th:text="'Proje Bütçesi: ' + ${project.projeButcesi}"></p>
+                                    <p class="text-left" th:text="'Para Birimi: ' + ${project.paraBirimi}"></p>
+                                    <p class="text-left" th:text="'Araştırmacı Sayısı: ' + ${project.arastirmaciSayisi}"></p>
+                                    <p class="text-left" th:text="'Kurum İçi Proje(BAP): ' + ${project.bap}"></p>
+                                    <p class="text-left" th:text="'Uluslararası Proje: ' + ${project.uluslararasi}"></p>
+                                    <p class="text-left" th:text="'Kontratlı Proje: ' + ${project.kontratliProje}"></p>
+                                    <p class="text-left" th:text="'Dış Destekli Proje: ' + ${project.disDestekli}"></p>
+                                    <p class="text-left" th:text="'Uluslararası İşbirlikli Proje: ' + ${project.uluslararasiIsbirlikli}"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" style="background-color: #003C70" data-dismiss="modal">Kapat</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             </tbody>

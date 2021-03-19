@@ -103,4 +103,9 @@ public class ProjectServiceImpl implements ProjectService{
     public Optional<Project> findById(String id) {
         return projectRepository.findById(id);
     }
+
+    @Override
+    public List<Project> getReport(String projeYil, boolean kurumIciProje, boolean uluslararasi, boolean kontratliProje) {
+        return projectRepository.findProjectsByYilOrBapOrUluslararasiOrKontratliProje(projeYil, kurumIciProje, uluslararasi, kontratliProje);
+    }
 }

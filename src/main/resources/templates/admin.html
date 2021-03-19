@@ -23,14 +23,15 @@
 </head>
 <body class="container-fluid">
 
-<nav class="navbar navbar-light" style="background-color: #428bca; height: 72px">
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 10px; margin-right: 200px"/>
-    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: -60px">ARVED</p>
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 1670px; margin-top: -80px"/>
+<nav class="navbar navbar-light" style="background-color: #003C70; height: 72px">
+    <img src="../static/images/AU_logo.png"
+         width="70" height="70" alt="" th:src="@{/images/AU_logo.png}"
+         style="float: left"/>
+    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: 10px">Bilgisayar Mühendisliği
+        Araştırma Verilerinin Değerlendirilmesi Sistemi</p>
+    <img src="../static/images/muhendislik_fak_logo.png"
+         width="70" height="70" alt="" th:src="@{/images/muhendislik_fak_logo.png}"
+         style="float: right; margin-top: -65px"/>
 </nav>
 <nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
     <div class="input-group rounded" style="width: 500px; margin: auto; margin-top: 15px">
@@ -51,11 +52,15 @@
             <li><a href="/admin/allStaff">Tüm Personeller</a></li>
             <li><a href="/admin/allArticles">Tüm Makaleler</a></li>
             <li><a href="/admin/allProjects">Tüm Projeler</a></li>
+            <li><a href="/admin/createReport">Raporlar</a></li>
             <li><a href="/logout">Çıkış</a></li>
         </ul>
     </div>
 </nav>
-
+<nav class="navbar navbar-light" style="width: 500px; margin: auto">
+    <div></div>
+    <div></div>
+</nav>
 <main class="container">
     <h4>Onay Bekleyenler</h4>
     <div class="table table-bordered">
@@ -71,6 +76,9 @@
             </tr>
             </thead>
             <tbody>
+            <tr th:if="${pendingApproval.isEmpty()}">
+                <td colspan="2">Şu an onay bekleyen kullanıcı bulunmamaktadır. </td>
+            </tr>
             <tr th:each="pa: ${pendingApproval}">
                 <td th:text="${pa.name}">Table cell</td>
                 <td th:text="${pa.surname}">Table cell</td>
@@ -81,7 +89,7 @@
                 <td></td>
                 <td>
                     <form th:action="'/admin/onayBekleyenler/confirm/'+ ${pa.id}" th:method="post">
-                        <button class="btn btn-success" type="submit">
+                        <button class="btn btn-success" type="submit" style="background-color: #003C70">
                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Onayla
                         </button>
                     </form>

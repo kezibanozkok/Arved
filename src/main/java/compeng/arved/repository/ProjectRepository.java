@@ -1,6 +1,5 @@
 package compeng.arved.repository;
 
-import compeng.arved.domain.Article;
 import compeng.arved.domain.Project;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -18,4 +17,12 @@ public interface ProjectRepository extends MongoRepository<Project, String> {
 
     @Query(value = "{'projeId' : ?0}", delete = true)
     void deleteProjectByProjeId(String projeId);
+
+    @Query("{$and :[ "
+            + " ?#{ [0] == 'all' ? { $where : 'true'} : { 'projeYil' : [0] } },"
+            + " ?#{ [1] == 'false' ? { $where : 'true'} : { 'kurumIciProje' : [1] } },"
+            + " ?#{ [2] == 'false' ? { $where : 'true'} : { 'uluslararasi' : [2] } },"
+            + " ?#{ [3] == 'false' ? { $where : 'true'} : { 'kontratliProje' : [3] } },"
+            + "]}")
+    List<Project> findProjectsByYilOrBapOrUluslararasiOrKontratliProje(String projeYil, boolean kurumIciProje, boolean uluslararasi, boolean kontratliProje);
 }

@@ -23,14 +23,15 @@
 </head>
 <body class="container-fluid">
 
-<nav class="navbar navbar-light" style="background-color: #428bca; height: 72px">
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 10px; margin-right: 200px"/>
-    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: -60px">ARVED</p>
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 1670px; margin-top: -80px"/>
+<nav class="navbar navbar-light" style="background-color: #003C70; height: 72px">
+    <img src="../static/images/AU_logo.png"
+         width="70" height="70" alt="" th:src="@{/images/AU_logo.png}"
+         style="float: left"/>
+    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: 10px">Bilgisayar Mühendisliği
+        Araştırma Verilerinin Değerlendirilmesi Sistemi</p>
+    <img src="../static/images/muhendislik_fak_logo.png"
+         width="70" height="70" alt="" th:src="@{/images/muhendislik_fak_logo.png}"
+         style="float: right; margin-top: -65px"/>
 </nav>
 <nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
     <div class="input-group rounded" style="width: 500px; margin: auto; margin-top: 15px">
@@ -55,8 +56,12 @@
         </ul>
     </div>
 </nav>
-
+<nav class="navbar navbar-light" style="width: 500px; margin: auto">
+    <div></div>
+    <div></div>
+</nav>
 <main class="container">
+    <h4>Tüm Makaleler</h4>
     <div class="table table-bordered">
         <table class="table table-hover">
             <thead>
@@ -64,6 +69,8 @@
                 <th class="col">Makale Adı</th>
                 <th class="col">Yazar</th>
                 <th class="col">Yıl</th>
+                <th class="col"></th>
+                <th class="col"></th>
                 <th class="col"></th>
                 <th class="col"></th>
                 <th class="col"></th>
@@ -78,13 +85,44 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><a th:href="@{'/article/detail/' + ${article.id}}"  class="btn btn-primary">
+                <td><a class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter"
+                       th:attr="data-target= '#exampleModalCenter' + ${article.makaleId}">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Detay</a>
+                    <div class="modal fade" th:id="exampleModalCenter + ${article.makaleId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Makale Detayı</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-left" th:text="'Makale Adı: ' + ${article.makaleAdi}"></p>
+                                    <p class="text-left" th:text="'Yazarlar: ' + ${article.yazarListesi}"></p>
+                                    <p class="text-left" th:text="'Endeks Türü: ' + ${article.endeksTuru}"></p>
+                                    <p class="text-left" th:text="'Dergi Adı: ' + ${article.dergiAdi}"></p>
+                                    <p class="text-left" th:text="'Yıl: ' + ${article.yil}"></p>
+                                    <p class="text-left" th:text="'Cilt/Volume: ' + ${article.cilt_volume}"></p>
+                                    <p class="text-left" th:text="'Sayı: ' + ${article.sayi}"></p>
+                                    <p class="text-left" th:text="'Sayfa: ' + ${article.sayfaNumarasi}"></p>
+                                    <p class="text-left" th:text="'Uluslararası Yayın: ' + ${article.uluslararasiYayin}"></p>
+                                    <p class="text-left" th:text="'Uluslararası İşbirlikli Yayın: ' + ${article.uluslararasiIsbirlikli}"></p>
+                                    <p class="text-left" th:text="'BAP Projesinden Üretilen Yayın: ' + ${article.bap}"></p>
+                                    <p class="text-left" th:text="'Kurum Dışı Ortak Yazarlı: ' + ${article.kurumDisiYazar}"></p>
+                                    <p class="text-left" th:text="'DOİ: ' + ${article.doi}"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" style="background-color: #003C70" data-dismiss="modal">Kapat</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
+    <!--<a th:href="@{/admin/pdf}">
+        <span>Download PDF Document</span>
+    </a>-->
 </main>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

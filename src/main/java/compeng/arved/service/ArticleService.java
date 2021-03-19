@@ -17,4 +17,5 @@ public interface ArticleService {
     void update(ArticlePayload articlePayload, String id);
     void deleteById(String makaleId);
     Optional<Article> findById(String id);
+    List<Article> getReport(String yil, String endeksTuru, boolean uluslararasiYayin, boolean bap);
 }

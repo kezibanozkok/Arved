@@ -23,14 +23,15 @@
 </head>
 <body class="container-fluid">
 
-<nav class="navbar navbar-light" style="background-color: #428bca; height: 72px">
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 10px; margin-right: 200px"/>
-    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: -60px">ARVED</p>
-    <img src="https://upload.wikimedia.org/wikipedia/tr/5/5f/Ankara_%C3%9Cniversitesi_logosu.png"
-         width="70" height="70" alt=""
-         style="margin-left: 1670px; margin-top: -80px"/>
+<nav class="navbar navbar-light" style="background-color: #003C70; height: 72px">
+    <img src="../static/images/AU_logo.png"
+         width="70" height="70" alt="" th:src="@{/images/AU_logo.png}"
+         style="float: left"/>
+    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: 10px">Bilgisayar Mühendisliği
+        Araştırma Verilerinin Değerlendirilmesi Sistemi</p>
+    <img src="../static/images/muhendislik_fak_logo.png"
+         width="70" height="70" alt="" th:src="@{/images/muhendislik_fak_logo.png}"
+         style="float: right; margin-top: -65px"/>
 </nav>
 <nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
     <div class="input-group rounded" style="width: 500px; margin: auto; margin-top: 15px">
@@ -55,44 +56,47 @@
         </ul>
     </div>
 </nav>
-
+<nav class="navbar navbar-light" style="width: 500px; margin: auto">
+    <div></div>
+    <div></div>
+</nav>
 <main class="container">
     <h4>Tüm Personeller</h4>
     <div class="table table-bordered">
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Personel Adı</th>
+                <th class="col">Personel Adı</th>
+                <th class="col"></th>
+
             </tr>
             </thead>
             <tbody>
             <tr th:each="st: ${staff}">
                 <td th:text="${st.fullName}">Table cell</td>
-                <td><a th:href="@{'/staff/detail/' + ${st.userId}}" target="_blank" class="btn btn-primary" style="margin-right: 0">
+                <td><a class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter"
+                       th:attr="data-target= '#exampleModalCenter' + ${st.fullName}">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Detay</a>
-                    <!--&lt;!&ndash; Modal &ndash;&gt;
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal fade" th:id="exampleModalCenter + ${st.fullName}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle"></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Personel Detayı</h5>
                                 </div>
                                 <div class="modal-body">
-                                    <ul class="list-group">
-                                        <li class="list-group-item" th:text="${st.fullName}"></li>
-                                        <li class="list-group-item" th:text="${st.wosHIndex}"></li>
-                                        <li class="list-group-item" th:text="${st.wosAtifSayisi}"></li>
-                                        <li class="list-group-item" th:text="${st.scopusHIndex}"></li>
-                                        <li class="list-group-item" th:text="${st.scopusAtifSayisi}"></li>
-                                        <li class="list-group-item" th:text="${st.uzmanlikAlani}"></li>
-                                    </ul>
+                                    <p class="text-left" th:text="'Personelin Adı: ' + ${st.fullName}"></p>
+                                    <p class="text-left" th:text="'WOS H Index: ' + ${st.wosHIndex}"></p>
+                                    <p class="text-left" th:text="'WOS Atıf Sayısı: ' + ${st.wosAtifSayisi}"></p>
+                                    <p class="text-left" th:text="'Scopus H Index: ' + ${st.scopusHIndex}"></p>
+                                    <p class="text-left" th:text="'Scopus Atıf Sayısı: ' + ${st.scopusAtifSayisi}"></p>
+                                    <p class="text-left" th:text="'Uzmanlık Alanı: ' + ${st.uzmanlikAlani}"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" style="background-color: #003C70" data-dismiss="modal">Kapat</button>
                                 </div>
                             </div>
                         </div>
-                    </div>-->
+                    </div>
                 </td>
             </tr>
             </tbody>
