@@ -20,20 +20,92 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            background-color: #003C70;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+    </style>
 </head>
 <body class="container-fluid">
 
 <nav class="navbar navbar-light" style="background-color: #003C70; height: 72px">
-    <img src="../static/images/AU_logo.png"
+    <!--<img src="../static/images/AU_logo.png"
          width="70" height="70" alt="" th:src="@{/images/AU_logo.png}"
          style="float: left"/>
     <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: 10px">Bilgisayar Mühendisliği
         Araştırma Verilerinin Değerlendirilmesi Sistemi</p>
     <img src="../static/images/muhendislik_fak_logo.png"
          width="70" height="70" alt="" th:src="@{/images/muhendislik_fak_logo.png}"
-         style="float: right; margin-top: -65px"/>
+         style="float: right; margin-top: -65px"/>-->
+
+    <div class="text-left" style="font-size: large; font-style: normal; color: white; margin-top: 20px; margin-left: 5px">Bilgisayar Mühendisliği Bölümü</div>
+    <div class="text-center">
+        <img src="../static/images/arved_logo.png" alt="" width="238" height="116" style="margin-top: -45px"
+             th:src="@{/images/arved_logo.png}">
+    </div>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/admin/onayBekleyenler">Onay Bekleyenler</a>
+        <a href="/admin/allStaff">Tüm Personeller</a>
+        <a href="/admin/allArticles">Tüm Makaleler</a>
+        <a href="/admin/allProjects">Tüm Projeler</a>
+        <a href="/admin/createReport">Raporlar</a>
+        <a href="/logout">Çıkış</a>
+    </div>
+
+    <span style="float: right; margin-top: -97px; margin-right: 10px; color: white; font-size:23px;cursor:pointer" onclick="openNav()">&#9776; Menü</span>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
 </nav>
-<nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
+<!--<nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
     <div class="input-group rounded" style="width: 500px; margin: auto; margin-top: 15px">
         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
                aria-describedby="search-addon" />
@@ -45,6 +117,7 @@
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="true">
             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+            Menü
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
@@ -52,9 +125,14 @@
             <li><a href="/admin/allStaff">Tüm Personeller</a></li>
             <li><a href="/admin/allArticles">Tüm Makaleler</a></li>
             <li><a href="/admin/allProjects">Tüm Projeler</a></li>
+            <li><a href="/admin/createReport">Raporlar</a></li>
             <li><a href="/logout">Çıkış</a></li>
         </ul>
     </div>
+</nav>-->
+<nav class="navbar navbar-light" style="width: 500px; margin: auto">
+    <div></div>
+    <div></div>
 </nav>
 <nav class="navbar navbar-light" style="width: 500px; margin: auto">
     <div></div>

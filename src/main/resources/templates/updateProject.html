@@ -20,16 +20,30 @@
 </head>
 <body class="container-fluid">
 <nav class="navbar navbar-light" style="background-color: #003C70; height: 72px">
-    <img src="../static/images/AU_logo.png"
+    <!--<img src="../static/images/AU_logo.png"
          width="70" height="70" alt="" th:src="@{/images/AU_logo.png}"
          style="float: left"/>
     <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: 10px">Bilgisayar Mühendisliği
         Araştırma Verilerinin Değerlendirilmesi Sistemi</p>
     <img src="../static/images/muhendislik_fak_logo.png"
          width="70" height="70" alt="" th:src="@{/images/muhendislik_fak_logo.png}"
-         style="float: right; margin-top: -65px"/>
+         style="float: right; margin-top: -65px"/>-->
+    <div class="text-left" style="font-size: large; font-style: normal; color: white; margin-top: 20px; margin-left: 5px">Bilgisayar Mühendisliği Bölümü</div>
+    <div class="text-center">
+        <img src="../static/images/arved_logo.png" alt="" width="238" height="116" style="margin-top: -45px"
+             th:src="@{/images/arved_logo.png}">
+    </div>
+
+    <ul class="nav navbar" sec:authorize="isAuthenticated()" >
+        <form th:action="@{/logout}" method="post" style="max-width: 400px; margin-top: -101px; margin-left: 1660px;">
+            <button class="btn btn-default" type="submit" value="Logout" style="background-color: #003C70; color: white; border-color: #003C70; font-size: 20px">
+                <span class="glyphicon glyphicon-log-out" style="font-size: 17px"></span>
+                Çıkış
+            </button>
+        </form>
+    </ul>
 </nav>
-<nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
+<!--<nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
     <div class="input-group rounded" style="width: 500px; margin: auto; margin-top: 15px">
         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
                aria-describedby="search-addon" />
@@ -52,10 +66,10 @@
             </button>
         </form>
     </ul>
+</nav>-->
+<nav class="navbar navbar-light" style="width: 500px; margin: auto">
 </nav>
 <nav class="navbar navbar-light" style="width: 500px; margin: auto">
-    <div></div>
-    <div></div>
 </nav>
 <main class="container" style="width: 1100px; height:850px; border: 1px ridge #cecece">
     <h4 style="margin-top: 30px; margin-left: 20px; margin-right: 20px; border-bottom-color: gainsboro; border-bottom-style: solid">Proje Bilgilerini Güncelle</h4>
@@ -84,8 +98,8 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="yil" class="col-sm-2 control-label">Yıl</label>
-            <select class="form-control" id="yil" name="yil" style="width: 745px; margin: auto">
+            <label for="projeYil" class="col-sm-2 control-label">Yıl</label>
+            <select class="form-control" id="projeYil" name="projeYil" style="width: 745px; margin: auto">
                 <option>2021</option>
                 <option>2020</option>
                 <option>2019</option>

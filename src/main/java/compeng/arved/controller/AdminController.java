@@ -2,6 +2,7 @@ package compeng.arved.controller;
 
 import com.lowagie.text.DocumentException;
 import compeng.arved.domain.Article;
+import compeng.arved.domain.Parameter;
 import compeng.arved.domain.Project;
 import compeng.arved.pdf.ArticlePdfExporter;
 import compeng.arved.pdf.ProjectPdfExporter;
@@ -27,15 +28,17 @@ public class AdminController {
     private final StaffInformationService staffInformationService;
     private final ArticleService articleService;
     private final ProjectService projectService;
+    private final ParameterService parameterService;
     List<Article> articleList;
     List<Project> projectList;
 
     @Autowired
-    public AdminController(UserConfirmationService userConfirmationService, StaffInformationService staffInformationService, ArticleService articleService, ProjectService projectService) {
+    public AdminController(UserConfirmationService userConfirmationService, StaffInformationService staffInformationService, ArticleService articleService, ProjectService projectService, ParameterService parameterService) {
         this.userConfirmationService = userConfirmationService;
         this.staffInformationService = staffInformationService;
         this.articleService = articleService;
         this.projectService = projectService;
+        this.parameterService = parameterService;
     }
 
     @GetMapping("/onayBekleyenler")
@@ -76,9 +79,9 @@ public class AdminController {
 
     @GetMapping("/createReport")
     public String getReportPage(Model model, @Param("yil") String yil, @Param("endeksTuru") String endeksTuru, @Param("uluslararasiYayin") boolean uluslararasiYayin, @Param("bap") boolean bap,
-                             @Param("projeYil") String projeYil, @Param("kurumIciProje") boolean kurumIciProje, @Param("uluslararasi") boolean ululuslararasi, @Param("kontratliProje") boolean kontratliProje) {
+                                @Param("projeYil") String projeYil, @Param("kurumIciProje") boolean kurumIciProje, @Param("uluslararasi") boolean uluslararasi, @Param("kontratliProje") boolean kontratliProje) {
         articleList = articleService.getReport(yil, endeksTuru, uluslararasiYayin, bap);
-        projectList = projectService.getReport(projeYil, kurumIciProje, ululuslararasi, kontratliProje);
+        projectList = projectService.getReport(projeYil, kurumIciProje, uluslararasi, kontratliProje);
         model.addAttribute("articles", articleList);
         model.addAttribute("projects", projectList);
         return "reports";
@@ -96,8 +99,9 @@ public class AdminController {
 
         //articleList = articleService.getReport(yil, endeksTuru, uluslararasiYayin, bap);
 
-        ArticlePdfExporter exporter = new ArticlePdfExporter(articleList);
-        exporter.export(response);
+        Parameter parameter = parameterService.findParameterByParamId("BOLUM_ADI");
+        ArticlePdfExporter exporter = new ArticlePdfExporter(articleList, projectList);
+        exporter.export(response, parameter.getParamDesc());
     }
 
     @GetMapping("/createReport/export/projectPdf")

@@ -20,21 +20,100 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="/static/js/datatable.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <![endif]-->
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            background-color: #003C70;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+    </style>
 </head>
 <body class="container-fluid">
-
 <nav class="navbar navbar-light" style="background-color: #003C70; height: 72px">
-    <img src="../static/images/AU_logo.png"
+    <!--<img src="../static/images/AU_logo.png"
          width="70" height="70" alt="" th:src="@{/images/AU_logo.png}"
-         style="float: left"/>
-    <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: 10px">Bilgisayar Mühendisliği
-        Araştırma Verilerinin Değerlendirilmesi Sistemi</p>
-    <img src="../static/images/muhendislik_fak_logo.png"
+         style="float: left"/>-->
+<!--    <p class="text-left" style="font-size: x-large; font-style: normal; color: white; ">Bilgisayar Mühendisliği Bölümü</p>-->
+    <div class="text-left" style="font-size: large; font-style: normal; color: white; margin-top: 20px; margin-left: 5px">Bilgisayar Mühendisliği Bölümü</div>
+    <div class="text-center">
+    <img src="../static/images/arved_logo.png" alt="" width="238" height="116" style="margin-top: -45px"
+         th:src="@{/images/arved_logo.png}">
+    </div>
+<!--    <p class="text-center" style="font-size: x-large; font-style: normal; color: white; ">Araştırma Verilerinin Değerlendirilmesi Sistemi</p>-->
+    <!--<img src="../static/images/muhendislik_fak_logo.png"
          width="70" height="70" alt="" th:src="@{/images/muhendislik_fak_logo.png}"
-         style="float: right; margin-top: -65px"/>
+         style="float: right; margin-top: -65px"/>-->
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/admin/onayBekleyenler">Onay Bekleyenler</a>
+        <a href="/admin/allStaff">Tüm Personeller</a>
+        <a href="/admin/allArticles">Tüm Makaleler</a>
+        <a href="/admin/allProjects">Tüm Projeler</a>
+        <a href="/admin/createReport">Raporlar</a>
+        <a href="/logout">Çıkış</a>
+    </div>
+
+    <span style="float: right; margin-top: -97px; margin-right: 10px; color: white; font-size:23px;cursor:pointer" onclick="openNav()">&#9776; Menü</span>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
 </nav>
-<nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
+<!--<nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
     <div class="input-group rounded" style="width: 500px; margin: auto; margin-top: 15px">
         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
                aria-describedby="search-addon" />
@@ -54,9 +133,14 @@
             <li><a href="/admin/allStaff">Tüm Personeller</a></li>
             <li><a href="/admin/allArticles">Tüm Makaleler</a></li>
             <li><a href="/admin/allProjects">Tüm Projeler</a></li>
+            <li><a href="/admin/createReport">Raporlar</a></li>
             <li><a href="/logout">Çıkış</a></li>
         </ul>
     </div>
+</nav>-->
+<nav class="navbar navbar-light" style="width: 500px; margin: auto">
+    <div></div>
+    <div></div>
 </nav>
 <nav class="navbar navbar-light" style="width: 500px; margin: auto">
     <div></div>
@@ -66,15 +150,16 @@
     <div class = "panel panel-default">
         <div class = "panel-heading">
             <ul class = "nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#makale">Makale</a></li>
-                <li><a data-toggle="tab" href="#proje">Proje</a></li>
+                <li class="active"><a data-toggle="tab" href="#report">Rapor Oluştur</a></li>
+<!--                <li><a data-toggle="tab" href="#project">Proje</a></li>-->
             </ul>
         </div>
         <div class="tab-content">
-            <div id="makale" class="tab-pane fade in active">
+            <div id="report" class="tab-pane fade in active">
                 <nav class="navbar navbar-light" style="width: 500px; margin: auto">
                 </nav>
                 <form class="form-horizontal" method="get" style="width:900px; margin: auto">
+                    <h4>Makale</h4>
                     <div class="form-group">
                         <label for="yil" class="col-sm-2 control-label">Yıl</label>
                         <select class="form-control" id="yil" name="yil" style="width: 745px; margin: 0 auto">
@@ -97,14 +182,21 @@
                             <option value="Diğer">Diğer</option>
                         </select>
                     </div>
+                    <!--<div class="form-group">
+                        <label for="uluslararasiYayin" class="col-sm-2 control-label">tfstgftfg</label>
+                        <select class="form-control" id="uluslararasiYayin" name="uluslararasiYayin" style="width: 745px; margin: 0 auto">
+                            <option value="all">Seçiniz</option>
+                            <option value="true">Uluslararası Yayın</option>
+                            <option value="false">BAP Projesinden Üretilen Yayın</option>
+                        </select>
+                    </div>-->
                     <div class="form-group">
                         <label for="uluslararasiYayin" class="col-sm-2 control-label">Uluslararası Yayın</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="uluslararasiYayin" value="true" >
+                            <input class="form-check-input" type="checkbox" id="uluslararasiYayin">
                             <label class="form-check-label" for="uluslararasiYayin">
                             </label>
                         </div>
-                        <div id="checkbox-value"></div>
                     </div>
                     <div class="form-group">
                         <label for="bap" class="col-sm-2 control-label">BAP Projesinden Üretilen Yayın</label>
@@ -114,6 +206,45 @@
                             </label>
                         </div>
                     </div>
+                    <nav class="navbar navbar-light" style="width: 500px; margin: auto">
+                    </nav>
+                    <h4>Proje</h4>
+                        <div class="form-group">
+                            <label for="projeYil" class="col-sm-2 control-label">Yıl</label>
+                            <select class="form-control" id="projeYil" name="projeYil" style="width: 745px; margin: 0 auto">
+                                <option value="all">Seçiniz</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="kurumIciProje" class="col-sm-2 control-label">Kurum İçi Proje(BAP)</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="true" id="kurumIciProje">
+                                <label class="form-check-label" for="kurumIciProje">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="uluslararasi" class="col-sm-2 control-label">Uluslararası Proje</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="uluslararasi">
+                                <label class="form-check-label" for="uluslararasi">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="kontratliProje" class="col-sm-2 control-label">Kontratlı Proje</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="kontratliProje">
+                                <label class="form-check-label" for="kontratliProje">
+                                </label>
+                            </div>
+                        </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-default"
@@ -123,19 +254,19 @@
                     </div>
                 </form>
             </div>
-            <div id="proje" class="tab-pane fade">
+            <!--<div id="project" class="tab-pane fade">
                 <nav class="navbar navbar-light" style="width: 500px; margin: auto">
                 </nav>
                 <form class="form-horizontal" method="get" style="width:900px; margin: auto">
                     <div class="form-group">
                         <label for="projeYil" class="col-sm-2 control-label">Yıl</label>
                         <select class="form-control" id="projeYil" name="projeYil" style="width: 745px; margin: 0 auto">
-                            <option>Seçiniz</option>
-                            <option>2021</option>
-                            <option>2020</option>
-                            <option>2019</option>
-                            <option>2018</option>
-                            <option>2017</option>
+                            <option value="all">Seçiniz</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -167,13 +298,13 @@
                             <button type="submit" class="btn btn-default"
                                     style="color: white; color-rendering: auto; background-color: #003C70">Listele
                             </button>
-                            <!--<a th:href="@{/admin/pdf}">
+                            <a th:href="@{/admin/pdf}">
                                 <span>Download PDF Document</span>
-                            </a>-->
+                            </a>
                         </div>
                     </div>
                 </form>
-            </div>
+            </div>-->
         </div>
     </div>
     <a th:href="@{/admin/createReport/export/articlePdf}">Export to PDF</a>
@@ -245,7 +376,7 @@
             <tr th:each="project: ${projects}">
                 <td th:text="${project.projeAdi}">Table cell</td>
                 <td th:text="${project.projeYurutucusu}">Table cell</td>
-                <td th:text="${project.yil}"></td>
+                <td th:text="${project.projeYil}"></td>
                 <td th:text="${project.projeDurumu}"></td>
                 <td th:text="${project.projeTuru}"></td>
                 <td th:text="${project.alanBilgisi}"></td>
@@ -271,5 +402,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
         integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
         crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

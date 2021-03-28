@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
           integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,19 +25,128 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <![endif]-->
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+        }
+        .modal-confirm {
+            color: #636363;
+            width: 400px;
+        }
+        .modal-confirm .modal-content {
+            padding: 20px;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+            font-size: 14px;
+        }
+        .modal-confirm .modal-header {
+            border-bottom: none;
+            position: relative;
+        }
+        .modal-confirm h4 {
+            text-align: center;
+            font-size: 26px;
+            margin: 30px 0 -10px;
+        }
+        .modal-confirm .close {
+            position: absolute;
+            top: -5px;
+            right: -2px;
+        }
+        .modal-confirm .modal-body {
+            color: #999;
+        }
+        .modal-confirm .modal-footer {
+            border: none;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 13px;
+            padding: 10px 15px 25px;
+        }
+        .modal-confirm .modal-footer a {
+            color: #999;
+        }
+        .modal-confirm .icon-box {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            border-radius: 50%;
+            z-index: 9;
+            text-align: center;
+            border: 3px solid #f15e5e;
+        }
+        .modal-confirm .icon-box i {
+            color: #f15e5e;
+            font-size: 46px;
+            display: inline-block;
+            margin-top: 13px;
+        }
+        .modal-confirm .btn, .modal-confirm .btn:active {
+            color: #fff;
+            border-radius: 4px;
+            background: #60c7c1;
+            text-decoration: none;
+            transition: all 0.4s;
+            line-height: normal;
+            min-width: 120px;
+            border: none;
+            min-height: 40px;
+            border-radius: 3px;
+            margin: 0 5px;
+        }
+        .modal-confirm .btn-secondary {
+            background: #c1c1c1;
+        }
+        .modal-confirm .btn-secondary:hover, .modal-confirm .btn-secondary:focus {
+            background: #a8a8a8;
+        }
+        .modal-confirm .btn-danger {
+            background: #f15e5e;
+        }
+        .modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+            background: #ee3535;
+        }
+        .p{
+            color: blue;
+        }
+    </style>
 </head>
 <body class="container-fluid">
 <nav class="navbar navbar-light" style="background-color: #003C70; height: 72px">
-    <img src="../static/images/AU_logo.png"
+    <!--<img src="../static/images/AU_logo.png"
          width="70" height="70" alt="" th:src="@{images/AU_logo.png}"
          style="float: left"/>
     <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: 10px">Bilgisayar Mühendisliği
         Araştırma Verilerinin Değerlendirilmesi Sistemi</p>
     <img src="../static/images/muhendislik_fak_logo.png"
          width="70" height="70" alt="" th:src="@{images/muhendislik_fak_logo.png}"
-         style="float: right; margin-top: -65px"/>
+         style="float: right; margin-top: -65px"/>-->
+
+    <div class="text-left" style="font-size: large; font-style: normal; color: white; margin-top: 20px; margin-left: 5px">Bilgisayar Mühendisliği Bölümü</div>
+    <div class="text-center">
+        <img src="../static/images/arved_logo.png" alt="" width="238" height="116" style="margin-top: -45px"
+             th:src="@{/images/arved_logo.png}">
+    </div>
+
+    <ul class="nav navbar" sec:authorize="isAuthenticated()" >
+        <form th:action="@{/logout}" method="post" style="max-width: 400px; margin-top: -101px; margin-left: 1660px;">
+            <button class="btn btn-default" type="submit" value="Logout" style="background-color: #003C70; color: white; border-color: #003C70; font-size: 20px">
+               <!-- <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-right" fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M11.646 11.354a.5.5 0 0 1 0-.708L14.293 8l-2.647-2.646a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0z"/>
+                    <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+                    <path fill-rule="evenodd"
+                          d="M2 13.5A1.5 1.5 0 0 1 .5 12V4A1.5 1.5 0 0 1 2 2.5h7A1.5 1.5 0 0 1 10.5 4v1.5a.5.5 0 0 1-1 0V4a.5.5 0 0 0-.5-.5H2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-1.5a.5.5 0 0 1 1 0V12A1.5 1.5 0 0 1 9 13.5H2z"/>
+                </svg>-->
+                <span class="glyphicon glyphicon-log-out" style="font-size: 17px"></span>
+                Çıkış
+            </button>
+        </form>
+    </ul>
 </nav>
-<nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
+<!--<nav class="navbar navbar-light" style="margin-top:-19px; height: 72px; border-color: gainsboro">
     <div class="input-group rounded" style="width: 500px; margin: auto; margin-top: 15px">
         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
                aria-describedby="search-addon" />
@@ -59,10 +169,10 @@
             </button>
         </form>
     </ul>
+</nav>-->
+<nav class="navbar navbar-light" style="width: 500px; margin: auto">
 </nav>
 <nav class="navbar navbar-light" style="width: 500px; margin: auto">
-    <div></div>
-    <div></div>
 </nav>
 <main class="container">
     <h4>Personel Bilgileri</h4>
@@ -112,7 +222,6 @@
                 <th class="col">
                     <a href="/article/add" class="btn btn-default" style="float: right">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Makale Ekle</a>
-
                 </th>
             </tr>
             </thead>
@@ -169,11 +278,36 @@
                 <td><a th:href="@{'/article/update/' + ${article.makaleId}}" target="_blank" class="btn btn-primary" style="background-color: #003C70">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Güncelle</a></td>
                 <td>
-                    <form th:action="'/article/delete/'+ ${article.makaleId}" th:method="post">
+                   <!-- <form th:action="'/article/delete/'+ ${article.makaleId}" th:method="post">
                         <button class="btn btn-danger" type="submit">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Sil
                         </button>
-                    </form>
+                    </form>-->
+                    <div class="text-center">
+                        <!-- Button HTML (to Trigger Modal) -->
+                        <a href="#myModal" class="btn btn-danger" data-toggle="modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Sil</a>
+                    </div>
+                    <!-- Modal HTML -->
+                    <div id="myModal" class="modal fade">
+                        <div class="modal-dialog modal-confirm">
+                            <div class="modal-content">
+                                <div class="modal-header flex-column">
+                                    <div class="icon-box">
+                                        <i class="material-icons">&#xE5CD;</i>
+                                    </div>
+                                    <h4 class="modal-title w-100">Emin misiniz?</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Bu makaleyi silmek istediğinize emin misiniz?</p>
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal et</button>
+                                    <button type="button" class="btn btn-danger">Sil</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             </tbody>
@@ -230,7 +364,7 @@
                                     <p class="text-left" th:text="'Proje Türü: ' + ${project.projeTuru}"></p>
                                     <p class="text-left" th:text="'Proje Durumu: ' + ${project.projeDurumu}"></p>
                                     <p class="text-left" th:text="'Alan Bilgisi ' + ${project.alanBilgisi}"></p>
-                                    <p class="text-left" th:text="'Yıl: ' + ${project.yil}"></p>
+                                    <p class="text-left" th:text="'Yıl: ' + ${project.projeYil}"></p>
                                     <p class="text-left" th:text="'Proje Bütçesi: ' + ${project.projeButcesi}"></p>
                                     <p class="text-left" th:text="'Para Birimi: ' + ${project.paraBirimi}"></p>
                                     <p class="text-left" th:text="'Araştırmacı Sayısı: ' + ${project.arastirmaciSayisi}"></p>
@@ -250,11 +384,36 @@
                 <td><a th:href="@{'/project/update/' + ${project.projeId}}" target="_blank" class="btn btn-primary" style="background-color: #003C70">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Güncelle</a></td>
                 <td>
-                    <form th:action="'/project/delete/' + ${project.projeId} "  th:method="post">
+                    <!--<form th:action="'/project/delete/' + ${project.projeId} "  th:method="post">
                         <button class="btn btn-danger" type="submit">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Sil
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Sil
                         </button>
-                    </form>
+                    </form>-->
+                    <div class="text-center">
+                        <!-- Button HTML (to Trigger Modal) -->
+                        <a href="#myModal2" class="btn btn-danger" data-toggle="modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Sil</a>
+                    </div>
+                    <!-- Modal HTML -->
+                    <div id="myModal2" class="modal fade">
+                        <div class="modal-dialog modal-confirm">
+                            <div class="modal-content">
+                                <div class="modal-header flex-column">
+                                    <div class="icon-box">
+                                        <i class="material-icons">&#xE5CD;</i>
+                                    </div>
+                                    <h4 class="modal-title w-100">Emin misiniz?</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Bu projeyi silmek istediğinize emin misiniz?</p>
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal et</button>
+                                    <button type="button" class="btn btn-danger" th:action="'/article/delete/'+ ${project.projeId}" th:method="post">Sil</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             </tbody>

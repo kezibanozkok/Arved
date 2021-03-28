@@ -1,9 +1,11 @@
 package compeng.arved.service;
 
 import compeng.arved.domain.Article;
+import compeng.arved.domain.Parameter;
 import compeng.arved.domain.User;
 import compeng.arved.payload.ArticlePayload;
 import compeng.arved.repository.ArticleRepository;
+import compeng.arved.repository.ParameterRepository;
 import compeng.arved.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -19,12 +21,14 @@ public class ArticleServiceImpl implements ArticleService{
     private final ArticleRepository articleRepository;
     private final UserRepository userRepository;
     private final MongoTemplate mongoTemplate;
+    private final ParameterRepository parameterRepository;
 
     @Autowired
-    public ArticleServiceImpl(ArticleRepository articleRepository, UserRepository userRepository, MongoTemplate mongoTemplate) {
+    public ArticleServiceImpl(ArticleRepository articleRepository, UserRepository userRepository, MongoTemplate mongoTemplate, ParameterRepository parameterRepository) {
         this.articleRepository = articleRepository;
         this.userRepository = userRepository;
         this.mongoTemplate = mongoTemplate;
+        this.parameterRepository = parameterRepository;
     }
 
     @Override

@@ -74,7 +74,7 @@ public class ProjectPdfExporter {
         for (Project project : list) {
             table.addCell(project.getProjeAdi());
             table.addCell(project.getProjeYurutucusu());
-            table.addCell(project.getYil());
+            table.addCell(project.getProjeYil());
             table.addCell(project.getProjeDurumu());
             table.addCell(project.getAlanBilgisi());
             table.addCell(project.getProjeButcesi());
@@ -97,13 +97,26 @@ public class ProjectPdfExporter {
         document.open();
         Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN);
         font.setSize(12);
-        font.setColor(Color.BLUE);
+        font.setColor(Color.BLACK);
 
-        Paragraph p = new Paragraph("MAKALE RAPORLARI", font);
-        p.setAlignment(Paragraph.ALIGN_CENTER);
-        document.add(p);
+        Image logo1 = Image.getInstance("/Users/kezibanozkok/IdeaProjects/arved/src/main/resources/static/images/AU_logo.png");
+        logo1.scaleAbsolute(55, 55);
+        logo1.setAbsolutePosition(40,490);
+        document.add(logo1);
 
-        PdfContentByte canvas = writer.getDirectContentUnder();
+        Paragraph header = new Paragraph("ANKARA ÜNİVERSİTESİ", font);
+        Paragraph subheader = new Paragraph("BİLGİSAYAR MÜHENDİSLİĞİ", font);
+        header.setAlignment(Paragraph.ALIGN_CENTER);
+        subheader.setAlignment(Paragraph.ALIGN_CENTER);
+        document.add(header);
+        document.add(subheader);
+
+        Image logo2 = Image.getInstance("/Users/kezibanozkok/IdeaProjects/arved/src/main/resources/static/images/muhendislik_fak_logo.png");
+        logo2.scaleAbsolute(55, 55);
+        logo2.setAbsolutePosition(753,490);
+        document.add(logo2);
+
+        /*PdfContentByte canvas = writer.getDirectContentUnder();
         image.scaleAbsolute(500, 500);
         image.setAbsolutePosition(170, 50);
         canvas.saveState();
@@ -111,7 +124,7 @@ public class ProjectPdfExporter {
         state.setFillOpacity(0.1f);
         canvas.setGState(state);
         canvas.addImage(image);
-        canvas.restoreState();
+        canvas.restoreState();*/
 
         PdfPTable table = new PdfPTable(14);
         table.setWidthPercentage(100f);

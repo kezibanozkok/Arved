@@ -6,27 +6,36 @@ import com.lowagie.text.pdf.*;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import compeng.arved.domain.Article;
+import compeng.arved.domain.Project;
+import org.librepdf.openpdf.fonts.Liberation;
 
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import com.lowagie.text.Image;
+
 import java.io.IOException;
 import java.util.List;
 
 public class ArticlePdfExporter {
-    private final List<Article> list;
+    private final List<Article> articles;
+    private final List<Project> projects;
 
-    public ArticlePdfExporter(List<Article> list) {
-        this.list = list;
+
+    public ArticlePdfExporter(List<Article> articles, List<Project> projects) {
+        this.articles = articles;
+        this.projects = projects;
     }
 
-    private void writeTableHeader(PdfPTable table) {
+    private void writeTableHeader(PdfPTable table) throws IOException {
         PdfPCell cell = new PdfPCell();
         cell.setBackgroundColor(Color.BLUE);
-        cell.setPadding(5);
+        cell.setPadding(1);
 
-        Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN);
+        /*Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN);
+        font.setColor(Color.WHITE);*/
+        Font font = Liberation.SERIF.create();
         font.setColor(Color.WHITE);
+        font.setSize(11);
 
         cell.setPhrase(new Phrase("Makale Adi", font));
         table.addCell(cell);
@@ -69,7 +78,7 @@ public class ArticlePdfExporter {
     }
 
     private void writeTableData(PdfPTable table) {
-        for (Article article : list) {
+        for (Article article : articles) {
             table.addCell(article.getMakaleAdi());
             table.addCell(article.getYazarListesi());
             table.addCell(article.getYil());
@@ -86,23 +95,29 @@ public class ArticlePdfExporter {
         }
     }
 
-    public void export(HttpServletResponse response) throws DocumentException, IOException {
+    public void export(HttpServletResponse response, String  bolumAdi) throws DocumentException, IOException {
         Document document = new Document(PageSize.A4.rotate());
 
         PdfWriter.getInstance(document, response.getOutputStream());
 
         document.open();
-        Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN);
+        /*Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN);
+        font.setSize(18);
+        font.setColor(Color.BLACK);*/
+
+        Font font = Liberation.SERIF.create();
         font.setSize(18);
         font.setColor(Color.BLACK);
+
 
         Image logo1 = Image.getInstance("/Users/kezibanozkok/IdeaProjects/arved/src/main/resources/static/images/AU_logo.png");
         logo1.scaleAbsolute(55, 55);
         logo1.setAbsolutePosition(40,490);
         document.add(logo1);
 
+
         Paragraph header = new Paragraph("ANKARA ÜNİVERSİTESİ", font);
-        Paragraph subheader = new Paragraph("BİLGİSAYAR MÜHENDİSLİĞİ", font);
+        Paragraph subheader = new Paragraph(bolumAdi, font);
         header.setAlignment(Paragraph.ALIGN_CENTER);
         subheader.setAlignment(Paragraph.ALIGN_CENTER);
         document.add(header);

@@ -1,5 +1,6 @@
 package compeng.arved.repository;
 
+import compeng.arved.domain.Article;
 import compeng.arved.domain.Project;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -18,11 +19,19 @@ public interface ProjectRepository extends MongoRepository<Project, String> {
     @Query(value = "{'projeId' : ?0}", delete = true)
     void deleteProjectByProjeId(String projeId);
 
-    @Query("{$and :[ "
-            + " ?#{ [0] == 'all' ? { $where : 'true'} : { 'projeYil' : [0] } },"
-            + " ?#{ [1] == 'false' ? { $where : 'true'} : { 'kurumIciProje' : [1] } },"
-            + " ?#{ [2] == 'false' ? { $where : 'true'} : { 'uluslararasi' : [2] } },"
-            + " ?#{ [3] == 'false' ? { $where : 'true'} : { 'kontratliProje' : [3] } },"
+    @Query("{$and:["
+            + " ?#{ [0]=='all' ? {$where:'true'} : {'yil':[0]} },"
+            + " ?#{ [1]=='false' ? {$where:'true'} : {'bap':[1]} },"
+            + " ?#{ [2]=='false' ? {$where:'true'} : {'uluslararasi':[2]} },"
+            + " ?#{ [3]=='false' ? {$where:'true'} : {'kontratliProje':[3]} },"
             + "]}")
-    List<Project> findProjectsByYilOrBapOrUluslararasiOrKontratliProje(String projeYil, boolean kurumIciProje, boolean uluslararasi, boolean kontratliProje);
+    List<Project> findProjectsByProjeYilOrBapOrUluslararasiOrKontratliProje(String projeYil, boolean kurumIciProje, boolean uluslararasi, boolean kontratliProje);
+
+    /*@Query("{$and:["
+            + " ?#{ [0]=='all' ? {$where:'true'} : {'yil':[0]} },"
+            + " ?#{ [1]=='all' ? {$where:'true'} : {'endeksTuru':[1]} },"
+            + " ?#{ [2]=='false' ? {$where:'true'} : {'uluslararasiYayin':[2]} },"
+            + " ?#{ [3]=='false' ? {$where:'true'} : {'bap':[3]} },"
+            + "]}")
+    List<Article> findArticlesByYilOrEndeksTuruOrUluslararasiYayinOrBap(String yil, String endeksTuru, boolean uluslararasiYayin, boolean bap);*/
 }

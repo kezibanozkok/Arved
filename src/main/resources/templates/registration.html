@@ -20,14 +20,20 @@
 </head>
 <body class="container-fluid">
 <nav class="navbar navbar-light" style="background-color: #003C70; height: 72px">
-    <img src="../static/images/AU_logo.png"
+    <!--<img src="../static/images/AU_logo.png"
          width="70" height="70" alt="" th:src="@{images/AU_logo.png}"
          style="float: left"/>
     <p class="text-center" style="font-size: xx-large; font-style: normal; color: white; margin-top: 10px">Bilgisayar Mühendisliği
         Araştırma Verilerinin Değerlendirilmesi Sistemi</p>
     <img src="../static/images/muhendislik_fak_logo.png"
          width="70" height="70" alt="" th:src="@{images/muhendislik_fak_logo.png}"
-         style="float: right; margin-top: -65px"/>
+         style="float: right; margin-top: -65px"/>-->
+
+    <div class="text-left" style="font-size: large; font-style: normal; color: white; margin-top: 20px; margin-left: 5px">Bilgisayar Mühendisliği Bölümü</div>
+    <div class="text-center">
+        <img src="../static/images/arved_logo.png" alt="" width="238" height="116" style="margin-top: -45px"
+             th:src="@{/images/arved_logo.png}">
+    </div>
 </nav>
 <nav class="navbar navbar-light" style="width: 600px; margin: auto">
     <div class="alert alert-info" role="alert" th:text="${success}" th:if="${success}"></div>

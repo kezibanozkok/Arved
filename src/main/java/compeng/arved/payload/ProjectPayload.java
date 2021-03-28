@@ -13,7 +13,7 @@ public class ProjectPayload {
     private String userId;
     private boolean bap;
     private boolean uluslararasi;
-    private String yil;
+    private String projeYil;
     private String projeDurumu;
     private String projeTuru;
     private String alanBilgisi;
