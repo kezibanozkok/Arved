@@ -5,6 +5,8 @@ import compeng.arved.repository.ParameterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ParameterServiceImpl implements ParameterService{
 
@@ -25,5 +27,8 @@ public class ParameterServiceImpl implements ParameterService{
         return parameterRepository.findParameterByParamId(paramId);
     }
 
-
+    @Override
+    public List<Parameter> findAll() {
+        return parameterRepository.findAll();
+    }
 }

@@ -110,17 +110,29 @@
         <div class="form-group">
             <label for="kurumIciProje" class="col-sm-2 control-label">Kurum İçi Proje(BAP)</label>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="true" id="kurumIciProje">
-                <label class="form-check-label" for="kurumIciProje">
-                </label>
+                <input class="form-check-input" type="checkbox" value="true" id="kurumIciProje" name="kurumIciProje">
+                <label class="form-check-label" for="kurumIciProje"></label>
+                <script>
+                    $(document).ready(function () {
+                        $('#kurumIciProje').on('change', function () {
+                            $('input[name="kurumIciProje"]').val($(this).is(':checked') ? 'true' : 'false');
+                        });
+                    });
+                </script>
             </div>
         </div>
         <div class="form-group">
             <label for="uluslararasi" class="col-sm-2 control-label">Uluslararası Proje</label>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="uluslararasi">
-                <label class="form-check-label" for="uluslararasi">
-                </label>
+                <input class="form-check-input" type="checkbox" id="uluslararasi" name="uluslararasi">
+                <label class="form-check-label" for="uluslararasi"></label>
+                <script>
+                    $(document).ready(function () {
+                        $('#uluslararasi').on('change', function () {
+                            $('input[name="uluslararasi"]').val($(this).is(':checked') ? 'true' : 'false');
+                        });
+                    });
+                </script>
             </div>
         </div>
         <div class="form-group">
@@ -154,25 +166,43 @@
         <div class="form-group">
             <label for="kontratliProje" class="col-sm-2 control-label">Kontratlı Proje</label>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="kontratliProje">
-                <label class="form-check-label" for="kontratliProje">
-                </label>
+                <input class="form-check-input" type="checkbox" id="kontratliProje" name="kontratliProje">
+                <label class="form-check-label" for="kontratliProje"></label>
+                <script>
+                    $(document).ready(function () {
+                        $('#kontratliProje').on('change', function () {
+                            $('input[name="kontratliProje"]').val($(this).is(':checked') ? 'true' : 'false');
+                        });
+                    });
+                </script>
             </div>
         </div>
         <div class="form-group">
             <label for="disDestekli" class="col-sm-2 control-label">Dış Destekli Proje</label>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="disDestekli">
-                <label class="form-check-label" for="disDestekli">
-                </label>
+                <input class="form-check-input" type="checkbox" id="disDestekli" name="disDestekli">
+                <label class="form-check-label" for="disDestekli"></label>
+                <script>
+                    $(document).ready(function () {
+                        $('#disDestekli').on('change', function () {
+                            $('input[name="disDestekli"]').val($(this).is(':checked') ? 'true' : 'false');
+                        });
+                    });
+                </script>
             </div>
         </div>
         <div class="form-group">
             <label for="uluslararasiIsbirlikli" class="col-sm-2 control-label">Uluslararası İşbirlikli Proje</label>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="uluslararasiIsbirlikli">
-                <label class="form-check-label" for="uluslararasiIsbirlikli">
-                </label>
+                <input class="form-check-input" type="checkbox" id="uluslararasiIsbirlikli" name="uluslararasiIsbirlikli">
+                <label class="form-check-label" for="uluslararasiIsbirlikli"></label>
+                <script>
+                    $(document).ready(function () {
+                        $('#uluslararasiIsbirlikli').on('change', function () {
+                            $('input[name="uluslararasiIsbirlikli"]').val($(this).is(':checked') ? 'true' : 'false');
+                        });
+                    });
+                </script>
             </div>
         </div>
         <div class="form-group">
@@ -185,7 +215,6 @@
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-default"
                         style="color: white; color-rendering: auto; background-color: #003C70">Kaydet
-
                 </button>
             </div>
         </div>

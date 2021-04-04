@@ -74,7 +74,7 @@ public class ProjectPdfExporter {
         for (Project project : list) {
             table.addCell(project.getProjeAdi());
             table.addCell(project.getProjeYurutucusu());
-            table.addCell(project.getProjeYil());
+            table.addCell(project.getYil());
             table.addCell(project.getProjeDurumu());
             table.addCell(project.getAlanBilgisi());
             table.addCell(project.getProjeButcesi());

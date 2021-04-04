@@ -68,7 +68,7 @@ public class ProjectServiceImpl implements ProjectService{
 
         if (optionalUser.isPresent()) {
             userId = optionalUser.get().getId();
-            Project project = new Project(null, projectId, userId, projectPayload.isBap(), projectPayload.isUluslararasi(), projectPayload.getProjeYil(), projectPayload.getProjeDurumu(), projectPayload.getProjeTuru(), projectPayload.getAlanBilgisi(), projectPayload.getProjeAdi(), projectPayload.getProjeButcesi(), projectPayload.getParaBirimi(),
+            Project project = new Project(null, projectId, userId, projectPayload.isBap(), projectPayload.isUluslararasi(), projectPayload.getYil(), projectPayload.getProjeDurumu(), projectPayload.getProjeTuru(), projectPayload.getAlanBilgisi(), projectPayload.getProjeAdi(), projectPayload.getProjeButcesi(), projectPayload.getParaBirimi(),
                     projectPayload.isKontratliProje(), projectPayload.isDisDestekli(), projectPayload.isUluslararasiIsbirlikli(), projectPayload.getArastirmaciSayisi(), projectPayload.getProjeYurutucusu());
             projectRepository.save(project);
         }
@@ -79,7 +79,7 @@ public class ProjectServiceImpl implements ProjectService{
         Project project = projectRepository.findProjectByProjeId(projeId);
         project.setBap(projectPayload.isBap());
         project.setUluslararasi(projectPayload.isUluslararasi());
-        project.setProjeYil(projectPayload.getProjeYil());
+        project.setYil(projectPayload.getYil());
         project.setProjeDurumu(projectPayload.getProjeDurumu());
         project.setProjeTuru(projectPayload.getProjeTuru());
         project.setAlanBilgisi(projectPayload.getAlanBilgisi());
@@ -106,7 +106,6 @@ public class ProjectServiceImpl implements ProjectService{
 
     @Override
     public List<Project> getReport(String projeYil, boolean kurumIciProje, boolean uluslararasi, boolean kontratliProje) {
-        System.out.println("breakpoint");
         return projectRepository.findProjectsByProjeYilOrBapOrUluslararasiOrKontratliProje(projeYil, kurumIciProje, uluslararasi, kontratliProje);
     }
 }

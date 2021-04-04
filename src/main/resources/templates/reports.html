@@ -193,9 +193,15 @@
                     <div class="form-group">
                         <label for="uluslararasiYayin" class="col-sm-2 control-label">Uluslararası Yayın</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="uluslararasiYayin">
-                            <label class="form-check-label" for="uluslararasiYayin">
-                            </label>
+                            <input class="form-check-input" type="checkbox" id="uluslararasiYayin" name="uluslararasiYayin">
+                            <label class="form-check-label" for="uluslararasiYayin"></label>
+                            <script>
+                                $(document).ready(function () {
+                                    $('#uluslararasiYayin').on('change', function () {
+                                        $('input[name="uluslararasiYayin"]').val($(this).is(':checked') ? 'true' : 'false');
+                                    });
+                                });
+                            </script>
                         </div>
                     </div>
                     <div class="form-group">
@@ -348,7 +354,7 @@
         </table>
     </div>
 
-    <a th:href="@{/admin/createReport/export/projectPdf}">Export to PDF</a>
+<!--    <a th:href="@{/admin/createReport/export/projectPdf}">Export to PDF</a>-->
     <div class="table table-bordered">
         <table class="table table-hover">
             <thead>
@@ -376,7 +382,7 @@
             <tr th:each="project: ${projects}">
                 <td th:text="${project.projeAdi}">Table cell</td>
                 <td th:text="${project.projeYurutucusu}">Table cell</td>
-                <td th:text="${project.projeYil}"></td>
+                <td th:text="${project.yil}"></td>
                 <td th:text="${project.projeDurumu}"></td>
                 <td th:text="${project.projeTuru}"></td>
                 <td th:text="${project.alanBilgisi}"></td>

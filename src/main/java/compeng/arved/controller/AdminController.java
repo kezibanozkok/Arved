@@ -99,9 +99,10 @@ public class AdminController {
 
         //articleList = articleService.getReport(yil, endeksTuru, uluslararasiYayin, bap);
 
-        Parameter parameter = parameterService.findParameterByParamId("BOLUM_ADI");
+        //Parameter parameter = parameterService.findParameterByParamId("BOLUM_ADI");
+        List<Parameter> parameters = parameterService.findAll();
         ArticlePdfExporter exporter = new ArticlePdfExporter(articleList, projectList);
-        exporter.export(response, parameter.getParamDesc());
+        exporter.export(response, parameters);
     }
 
     @GetMapping("/createReport/export/projectPdf")
