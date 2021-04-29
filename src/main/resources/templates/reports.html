@@ -94,12 +94,30 @@
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="/admin/onayBekleyenler">Onay Bekleyenler</a>
-        <a href="/admin/allStaff">Tüm Personeller</a>
-        <a href="/admin/allArticles">Tüm Makaleler</a>
-        <a href="/admin/allProjects">Tüm Projeler</a>
-        <a href="/admin/createReport">Raporlar</a>
-        <a href="/logout">Çıkış</a>
+        <a href="/admin/onayBekleyenler"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-check" viewBox="0 0 16 16">
+            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+            <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+        </svg>  Onay Bekleyenler</a>
+        <a href="/admin/allStaff"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+            <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+        </svg>  Tüm Personeller</a>
+        <a href="/admin/allArticles"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+            <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+            <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+        </svg>  Tüm Makaleler</a>
+        <a href="/admin/allProjects"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-ppt" viewBox="0 0 16 16">
+            <path d="M7 5.5a1 1 0 0 0-1 1V13a.5.5 0 0 0 1 0v-2h1.188a2.75 2.75 0 0 0 0-5.5H7zM8.188 10H7V6.5h1.188a1.75 1.75 0 1 1 0 3.5z"/>
+            <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+        </svg>  Tüm Projeler</a>
+        <a href="/admin/createReport"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16">
+            <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"/>
+            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+        </svg>  Raporlar</a>
+        <a href="/logout"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+        </svg>  Çıkış</a>
     </div>
 
     <span style="float: right; margin-top: -97px; margin-right: 10px; color: white; font-size:23px;cursor:pointer" onclick="openNav()">&#9776; Menü</span>
@@ -159,7 +177,9 @@
                 <nav class="navbar navbar-light" style="width: 500px; margin: auto">
                 </nav>
                 <form class="form-horizontal" method="get" style="width:900px; margin: auto">
-                    <h4>Makale</h4>
+                    <nav class="navbar navbar-light" style="width: 300px">
+                        <div class="alert alert-info">Makale raporu oluşturmak için seçiniz.</div>
+                    </nav>
                     <div class="form-group">
                         <label for="yil" class="col-sm-2 control-label">Yıl</label>
                         <select class="form-control" id="yil" name="yil" style="width: 745px; margin: 0 auto">
@@ -182,14 +202,6 @@
                             <option value="Diğer">Diğer</option>
                         </select>
                     </div>
-                    <!--<div class="form-group">
-                        <label for="uluslararasiYayin" class="col-sm-2 control-label">tfstgftfg</label>
-                        <select class="form-control" id="uluslararasiYayin" name="uluslararasiYayin" style="width: 745px; margin: 0 auto">
-                            <option value="all">Seçiniz</option>
-                            <option value="true">Uluslararası Yayın</option>
-                            <option value="false">BAP Projesinden Üretilen Yayın</option>
-                        </select>
-                    </div>-->
                     <div class="form-group">
                         <label for="uluslararasiYayin" class="col-sm-2 control-label">Uluslararası Yayın</label>
                         <div class="form-check">
@@ -207,14 +219,22 @@
                     <div class="form-group">
                         <label for="bap" class="col-sm-2 control-label">BAP Projesinden Üretilen Yayın</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="bap">
-                            <label class="form-check-label" for="bap">
-                            </label>
+                            <input class="form-check-input" type="checkbox" id="bap" name="bap">
+                            <label class="form-check-label" for="bap"></label>
+                            <script>
+                                $(document).ready(function () {
+                                    $('#bap').on('change', function () {
+                                        $('input[name="bap"]').val($(this).is(':checked') ? 'true' : 'false');
+                                    });
+                                });
+                            </script>
                         </div>
                     </div>
                     <nav class="navbar navbar-light" style="width: 500px; margin: auto">
                     </nav>
-                    <h4>Proje</h4>
+                    <nav class="navbar navbar-light" style="width: 300px">
+                        <div class="alert alert-info">Proje raporu oluşturmak için seçiniz.</div>
+                    </nav>
                         <div class="form-group">
                             <label for="projeYil" class="col-sm-2 control-label">Yıl</label>
                             <select class="form-control" id="projeYil" name="projeYil" style="width: 745px; margin: 0 auto">
@@ -226,31 +246,64 @@
                                 <option value="2017">2017</option>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <label for="kurumIciProje" class="col-sm-2 control-label">Kurum İçi Proje(BAP)</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="true" id="kurumIciProje">
-                                <label class="form-check-label" for="kurumIciProje">
-                                </label>
+                                <input class="form-check-input" type="checkbox" id="kurumIciProje" name="kurumIciProje">
+                                <label class="form-check-label" for="kurumIciProje"></label>
+                                <script>
+                                    $(document).ready(function () {
+                                        $('#kurumIciProje').on('change', function () {
+                                            $('input[name="kurumIciProje"]').val($(this).is(':checked') ? 'true' : 'false');
+                                        });
+                                    });
+                                </script>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="uluslararasi" class="col-sm-2 control-label">Uluslararası Proje</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="uluslararasi">
-                                <label class="form-check-label" for="uluslararasi">
-                                </label>
+                                <input class="form-check-input" type="checkbox" id="uluslararasi" name="uluslararasi">
+                                <label class="form-check-label" for="uluslararasi"></label>
+                                <script>
+                                    $(document).ready(function () {
+                                        $('#uluslararasi').on('change', function () {
+                                            $('input[name="uluslararasi"]').val($(this).is(':checked') ? 'true' : 'false');
+                                        });
+                                    });
+                                </script>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="kontratliProje" class="col-sm-2 control-label">Kontratlı Proje</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="kontratliProje">
-                                <label class="form-check-label" for="kontratliProje">
-                                </label>
+                                <input class="form-check-input" type="checkbox" id="kontratliProje" name="kontratliProje">
+                                <label class="form-check-label" for="kontratliProje"></label>
+                                <script>
+                                    $(document).ready(function () {
+                                        $('#kontratliProje').on('change', function () {
+                                            $('input[name="kontratliProje"]').val($(this).is(':checked') ? 'true' : 'false');
+                                        });
+                                    });
+                                </script>
                             </div>
                         </div>
+                    <nav class="navbar navbar-light" style="width: 500px; margin: auto">
+                    </nav>
+                    <nav class="navbar navbar-light" style="width: 300px">
+                        <div class="alert alert-info">Bildiri raporu oluşturmak için seçiniz.</div>
+                    </nav>
+                    <div class="form-group">
+                        <label for="bildiriYil" class="col-sm-2 control-label">Yıl</label>
+                        <select class="form-control" id="bildiriYil" name="bildiriYil" style="width: 745px; margin: 0 auto">
+                            <option value="all">Seçiniz</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-default"
@@ -345,9 +398,9 @@
                 <td th:text="${article.cilt_volume}"></td>
                 <td th:text="${article.sayi}"></td>
                 <td th:text="${article.sayfaNumarasi}"></td>
-                <td th:text="${article.uluslararasiYayin}"></td>
-                <td th:text="${article.uluslararasiIsbirlikli}"></td>
-                <td th:text="${article.bap}"></td>
+                <td th:text="${article.uluslararasiYayin} ? 'Evet' : 'Hayır'"></td>
+                <td th:text="${article.uluslararasiIsbirlikli} ? 'Evet' : 'Hayır'"></td>
+                <td th:text="${article.bap} ? 'Evet' : 'Hayır'"></td>
                 <td th:text="${article.doi}"></td>
             </tr>
             </tbody>
@@ -388,12 +441,41 @@
                 <td th:text="${project.alanBilgisi}"></td>
                 <td th:text="${project.projeButcesi}"></td>
                 <td th:text="${project.paraBirimi}"></td>
-                <td th:text="${project.bap}"></td>
-                <td th:text="${project.uluslararasi}"></td>
-                <td th:text="${project.kontratliProje}"></td>
-                <td th:text="${project.disDestekli}"></td>
-                <td th:text="${project.uluslararasiIsbirlikli}"></td>
+                <td th:text="${project.bap} ? 'Evet' : 'Hayır'"></td>
+                <td th:text="${project.uluslararasi} ? 'Evet' : 'Hayır'"></td>
+                <td th:text="${project.kontratliProje} ? 'Evet' : 'Hayır'"></td>
+                <td th:text="${project.disDestekli} ? 'Evet' : 'Hayır'"></td>
+                <td th:text="${project.uluslararasiIsbirlikli} ? 'Evet' : 'Hayır'"></td>
                 <td th:text="${project.arastirmaciSayisi}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table table-bordered">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th class="col">Bildiri Başlığı</th>
+                <th class="col">Yazar</th>
+                <th class="col">Konferans</th>
+                <th class="col">Ülke</th>
+                <th class="col">Şehir</th>
+                <th class="col">Yıl</th>
+                <th class="col">Konu</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${bildiriler.isEmpty()}">
+                <td colspan="2"> Bu kriterlere uygun bildiri bulunmamaktadır. </td>
+            </tr>
+            <tr th:each="bildiri: ${bildiriler}">
+                <td th:text="${bildiri.baslik}">Table cell</td>
+                <td th:text="${bildiri.yazar}">Table cell</td>
+                <td th:text="${bildiri.konferans}"></td>
+                <td th:text="${bildiri.ulke}"></td>
+                <td th:text="${bildiri.sehir}"></td>
+                <td th:text="${bildiri.yil}"></td>
+                <td th:text="${bildiri.konu}"></td>
             </tr>
             </tbody>
         </table>

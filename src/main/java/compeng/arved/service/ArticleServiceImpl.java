@@ -1,7 +1,6 @@
 package compeng.arved.service;
 
 import compeng.arved.domain.Article;
-import compeng.arved.domain.Parameter;
 import compeng.arved.domain.User;
 import compeng.arved.payload.ArticlePayload;
 import compeng.arved.repository.ArticleRepository;
@@ -10,7 +9,6 @@ import compeng.arved.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -170,12 +170,15 @@
         </form>
     </ul>
 </nav>-->
+<!--<div sec:authorize="isAuthenticated()" style="margin-top: 40px">
+    <h1 th:text="'Welcome, ' + ${userName} +' '+ ${userSurname} + '!'"></h1>
+</div>-->
 <nav class="navbar navbar-light" style="width: 500px; margin: auto">
 </nav>
 <nav class="navbar navbar-light" style="width: 500px; margin: auto">
 </nav>
 <main class="container">
-    <h4>Personel Bilgileri</h4>
+    <h4 th:text="'Personel Bilgileri ' + '(' + ${userName} +' '+ ${userSurname} + ')'"></h4>
     <div class="table table-bordered">
         <table class="table table-hover">
             <thead>
@@ -237,7 +240,7 @@
                 <td></td>
                 <td></td>
                 <td><a class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter"
-                       th:attr="data-target= '#exampleModalCenter' + ${article.makaleId}">
+                       th:attr="data-target= '#exampleModalCenter' + ${article.makaleId}" style="float: right">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Detay</a>
                     <!-- Button trigger modal -->
                     <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
@@ -275,7 +278,7 @@
                         </div>
                     </div>
                 </td>
-                <td><a th:href="@{'/article/update/' + ${article.makaleId}}" target="_blank" class="btn btn-primary" style="background-color: #003C70">
+                <td><a th:href="@{'/article/update/' + ${article.makaleId}}" target="_blank" class="btn btn-primary" style="background-color: #003C70; float: right">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Güncelle</a></td>
                 <td>
                    <!-- <form th:action="'/article/delete/'+ ${article.makaleId}" th:method="post">
@@ -289,7 +292,7 @@
                         <a href="#deleteModal" class="btn btn-danger" data-toggle="modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Sil</a>
                     </div>-->
                     <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
-                       th:attr="data-target= '#deleteModal' + ${article.makaleId}">
+                       th:attr="data-target= '#deleteModal' + ${article.makaleId}" style="float: right">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Sil</a>
                     <!-- Modal HTML -->
                     <div th:id="deleteModal + ${article.makaleId}" class="modal fade">
@@ -356,7 +359,7 @@
                 <td></td>
                 <td></td>
                 <td><a class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter"
-                       th:attr="data-target= '#exampleModalCenter' + ${project.projeId}">
+                       th:attr="data-target= '#exampleModalCenter' + ${project.projeId}" style="float: right">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Detay</a>
                     <!-- Modal -->
                     <div class="modal fade" th:id="exampleModalCenter + ${project.projeId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
@@ -391,7 +394,7 @@
                         </div>
                     </div>
                 </td>
-                <td><a th:href="@{'/project/update/' + ${project.projeId}}" target="_blank" class="btn btn-primary" style="background-color: #003C70">
+                <td><a th:href="@{'/project/update/' + ${project.projeId}}" target="_blank" class="btn btn-primary" style="background-color: #003C70; float: right">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Güncelle</a></td>
                 <td>
                     <!--<form th:action="'/project/delete/' + ${project.projeId} "  th:method="post">
@@ -405,7 +408,7 @@
                     </div>-->
 
                     <a class="btn btn-danger" data-toggle="modal" data-target="#myModal2"
-                       th:attr="data-target= '#deleteModal' + ${project.projeId}">
+                       th:attr="data-target= '#deleteModal' + ${project.projeId}" style="float: right">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Sil</a>
                     <!-- Modal HTML -->
                     <div th:id="deleteModal + ${project.projeId}" class="modal fade">
@@ -440,7 +443,104 @@
             </tbody>
         </table>
     </div>
+    <nav class="navbar navbar-light" style="width: 500px; margin: auto">
+        <div></div>
+        <div></div>
+    </nav>
+    <h4>Bildiriler</h4>
+    <div class="table table-bordered">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th class="col">Bildiri Adı</th>
+                <th class="col">Yazar</th>
+                <th class="col">Yıl</th>
+                <th class="col"></th>
+                <th class="col"></th>
+                <th class="col"></th>
+                <th class="col"></th>
+                <th class="col">
+                    <a href="/bildiri/add" class="btn btn-default" style="float: right">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Bildiri Ekle</a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${bildiriler.isEmpty()}">
+                <td colspan="2"> Bildiriniz bulunmamaktadır. </td>
+            </tr>
+            <tr th:each="bildiri: ${bildiriler}">
+                <td th:text="${bildiri.baslik}">Table cell</td>
+                <td th:text="${bildiri.yazar}">Table cell</td>
+                <td th:text="${bildiri.yil}">Table cell</td>
+                <td></td>
+                <td></td>
+                <td><a class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter"
+                       th:attr="data-target= '#exampleModalCenter' + ${bildiri.bildiriId}" style="float: right">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Detay</a>
+                    <div class="modal fade" th:id="exampleModalCenter + ${bildiri.bildiriId}" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalCenterTitle">Bildiri Detayı</h5>
+                                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>-->
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-left" th:text="'Bildiri Adı: ' + ${bildiri.baslik}"></p>
+                                    <p class="text-left" th:text="'Yazar: ' + ${bildiri.yazar}"></p>
+                                    <p class="text-left" th:text="'Konferans: ' + ${bildiri.konferans}"></p>
+                                    <p class="text-left" th:text="'Ülke: ' + ${bildiri.ulke}"></p>
+                                    <p class="text-left" th:text="'Şehir: ' + ${bildiri.sehir}"></p>
+                                    <p class="text-left" th:text="'Yıl: ' + ${bildiri.yil}"></p>
+                                    <p class="text-left" th:text="'Bildirinin Konusu: ' + ${bildiri.konu}"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" style="background-color: #003C70" data-dismiss="modal">Kapat</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td><a th:href="@{'/bildiri/update/' + ${bildiri.bildiriId}}" target="_blank" class="btn btn-primary" style="background-color: #003C70; float: right">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Güncelle</a></td>
+                <td>
+                    <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
+                       th:attr="data-target= '#deleteModal' + ${bildiri.bildiriId}" style="float: right">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Sil</a>
+                    <!-- Modal HTML -->
+                    <div th:id="deleteModal + ${bildiri.bildiriId}" class="modal fade">
+                        <div class="modal-dialog modal-confirm">
+                            <div class="modal-content">
+                                <div class="modal-header flex-column">
+                                    <div class="icon-box">
+                                        <i class="material-icons">&#xE5CD;</i>
+                                    </div>
+                                    <h4 class="modal-title w-100">Emin misiniz?</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Bu bildiriyi silmek istediğinize emin misiniz?</p>
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <!--<button type="button" class="btn btn-danger" >Sil</button>-->
+                                    <form th:action="'/bildiri/delete/'+ ${bildiri.bildiriId}" th:method="post">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal et</button>
+                                        <button class="btn btn-danger" type="submit">
+                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Sil
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </main>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
