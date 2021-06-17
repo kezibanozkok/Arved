@@ -19,15 +19,11 @@ import java.util.Random;
 public class ArticleServiceImpl implements ArticleService{
     private final ArticleRepository articleRepository;
     private final UserRepository userRepository;
-    private final MongoTemplate mongoTemplate;
-    private final ParameterRepository parameterRepository;
 
     @Autowired
-    public ArticleServiceImpl(ArticleRepository articleRepository, UserRepository userRepository, MongoTemplate mongoTemplate, ParameterRepository parameterRepository) {
+    public ArticleServiceImpl(ArticleRepository articleRepository, UserRepository userRepository) {
         this.articleRepository = articleRepository;
         this.userRepository = userRepository;
-        this.mongoTemplate = mongoTemplate;
-        this.parameterRepository = parameterRepository;
     }
 
     @Override
@@ -46,10 +42,10 @@ public class ArticleServiceImpl implements ArticleService{
         return articleRepository.findAll();
     }
 
-    @Override
+    /*@Override
     public List<Article> getArticlesByUserId(String userId) {
         return articleRepository.findArticleByUserId(userId);
-    }
+    }*/
 
     @Override
     public Article save(Article article) {
@@ -105,10 +101,10 @@ public class ArticleServiceImpl implements ArticleService{
         articleRepository.deleteArticleByMakaleId(makaleId);
     }
 
-    @Override
+    /*@Override
     public Optional<Article> findById(String id) {
         return articleRepository.findById(id);
-    }
+    }*/
 
     @Override
     public List<Article> getReport(String yil, String endeksTuru, boolean uluslararasiYayin, boolean bap) {

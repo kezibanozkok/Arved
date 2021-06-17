@@ -9,8 +9,4 @@ public interface ParameterRepository extends MongoRepository<Parameter, String> 
 
     @Query("{'paramId' : ?0}")
     Parameter findParameterByParamId(String paramId);
-
- /*   @Query("{'makaleId' : ?0}")
-    Article findArticleByMakaleId(String makaleId);*/
-
 }

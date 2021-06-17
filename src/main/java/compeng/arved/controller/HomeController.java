@@ -44,12 +44,5 @@ public class HomeController {
         model.addAttribute("userSurname", user.getSurname());
         return "home";
     }
-
-    /*
-    @GetMapping("/403")
-    public String error() {
-        return "403";
-    }
-    */
 }
 

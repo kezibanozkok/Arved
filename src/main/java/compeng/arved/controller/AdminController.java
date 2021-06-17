@@ -5,8 +5,7 @@ import compeng.arved.domain.Article;
 import compeng.arved.domain.Bildiri;
 import compeng.arved.domain.Parameter;
 import compeng.arved.domain.Project;
-import compeng.arved.pdf.ArticlePdfExporter;
-import compeng.arved.pdf.ProjectPdfExporter;
+import compeng.arved.pdf.PdfExporter;
 import compeng.arved.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -81,6 +80,12 @@ public class AdminController {
         return "allProjects";
     }
 
+    @GetMapping("/allBildiri")
+    public String getAllBildiri(Model model) {
+        model.addAttribute("bildiriler", bildiriService.getAllBildiri());
+        return "allBildiriler";
+    }
+
     @GetMapping("/createReport")
     public String getReportPage(Model model, @Param("yil") String yil, @Param("endeksTuru") String endeksTuru, @Param("uluslararasiYayin") boolean uluslararasiYayin, @Param("bap") boolean bap,
                                 @Param("projeYil") String projeYil, @Param("kurumIciProje") boolean kurumIciProje, @Param("uluslararasi") boolean uluslararasi, @Param("kontratliProje") boolean kontratliProje, @Param("bildiriYil") String bildiriYil) {
@@ -93,37 +98,18 @@ public class AdminController {
         return "reports";
     }
 
-    @GetMapping("/createReport/export/articlePdf")
+    @GetMapping("/createReport/export/pdf")
     public void exportArticleToPDF(HttpServletResponse response) throws DocumentException, IOException {
         response.setContentType("application/pdf");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
 
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=articles_" + currentDateTime + ".pdf";
+        String headerValue = "attachment; filename=report_" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
 
-        //articleList = articleService.getReport(yil, endeksTuru, uluslararasiYayin, bap);
-
-        //Parameter parameter = parameterService.findParameterByParamId("BOLUM_ADI");
         List<Parameter> parameters = parameterService.findAll();
-        ArticlePdfExporter exporter = new ArticlePdfExporter(articleList, projectList, bildiriList);
+        PdfExporter exporter = new PdfExporter(articleList, projectList, bildiriList);
         exporter.export(response, parameters);
-    }
-
-    @GetMapping("/createReport/export/projectPdf")
-    public void exportProjectToPDF(HttpServletResponse response) throws DocumentException, IOException {
-        response.setContentType("application/pdf");
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
-        String currentDateTime = dateFormatter.format(new Date());
-
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=projects_" + currentDateTime + ".pdf";
-        response.setHeader(headerKey, headerValue);
-
-        //articleList = articleService.getReport(yil, endeksTuru, uluslararasiYayin, bap);
-
-        ProjectPdfExporter exporter = new ProjectPdfExporter(projectList);
-        exporter.export(response);
     }
 }

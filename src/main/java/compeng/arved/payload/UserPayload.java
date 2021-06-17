@@ -24,7 +24,4 @@ public class UserPayload {
     @NotNull(message = "Boş bırakılamaz")
     @Size(min = 6, message = "min 6 karakter gerekli")
     private String password;
-    //private String image;
-    //private String department;
-    //private List<Role> roles;
 }

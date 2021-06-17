@@ -17,7 +17,6 @@ public class ArticlePayload {
     private String makaleAdi;
     private String dergiAdi;
     private String yil;
-    //private String konferans;
     private String cilt_volume;
     private String sayi;
     private String sayfaNumarasi;
@@ -25,5 +24,4 @@ public class ArticlePayload {
     private boolean bap;
     private boolean kurumDisiYazar;
     private String yazarListesi;
-    //private Binary file;
 }

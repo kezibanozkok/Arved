@@ -53,7 +53,10 @@ public class StaffInformationServiceImpl implements StaffInformationService{
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             if (staffInformationRepository.findStaffInformationByUserId(user.getId()) == null) {
-                StaffInformation staffInformation = new StaffInformation(null, user.getId(), staffInformationPayload.getFullName(), staffInformationPayload.getWosHIndex(), staffInformationPayload.getWosAtifSayisi(), staffInformationPayload.getScopusHIndex(), staffInformationPayload.getScopusAtifSayisi(), staffInformationPayload.getUzmanlikAlani());
+                StaffInformation staffInformation = new StaffInformation(null, user.getId(), staffInformationPayload.getFullName(),
+                        staffInformationPayload.getWosHIndex(), staffInformationPayload.getWosAtifSayisi(),
+                        staffInformationPayload.getScopusHIndex(), staffInformationPayload.getScopusAtifSayisi(),
+                        staffInformationPayload.getUzmanlikAlani());
                 staffInformationRepository.save(staffInformation);
             } else {
                 StaffInformation staffInformation = staffInformationRepository.findStaffInformationByUserId(user.getId());

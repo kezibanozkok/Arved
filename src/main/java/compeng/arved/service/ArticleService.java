@@ -11,11 +11,11 @@ public interface ArticleService {
 
     List<Article> getUserArticles(Authentication authentication);
     List<Article> getAllArticles();
-    public List<Article> getArticlesByUserId(String userId);
+    //public List<Article> getArticlesByUserId(String userId);
     Article save (Article article);
     void add(ArticlePayload articlePayload, Authentication authentication);
     void update(ArticlePayload articlePayload, String id);
     void deleteById(String makaleId);
-    Optional<Article> findById(String id);
+    //Optional<Article> findById(String id);
     List<Article> getReport(String yil, String endeksTuru, boolean uluslararasiYayin, boolean bap);
 }

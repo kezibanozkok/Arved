@@ -23,5 +23,4 @@ public interface BildiriRepository extends MongoRepository<Bildiri, String> {
             + " ?#{ [0]=='all' ? {$where:'true'} : {'yil':[0]} },"
             + "]}")
     List<Bildiri> findBildirisByYil(String bildiriYil);
-
 }

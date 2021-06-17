@@ -1,6 +1,5 @@
 package compeng.arved.controller;
 
-import compeng.arved.domain.User;
 import compeng.arved.payload.UserPayload;
 import compeng.arved.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -41,7 +39,7 @@ public class SecurityController {
     }
 
     @PostMapping("/registration")
-    public String register(@ModelAttribute @Valid UserPayload userPayload, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+    public String register(@ModelAttribute @Valid UserPayload userPayload, RedirectAttributes redirectAttributes) {
 
         if (userService.register(userPayload)) {
             redirectAttributes.addFlashAttribute("success", "Kayıt isteğiniz alınmıştır. Kaydınız onaylandıktan sonra giriş yapabilirsiniz.");

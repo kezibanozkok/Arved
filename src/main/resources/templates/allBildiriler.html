@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Admin</title>
+    <title>Tüm Bilimsel Bildiriler</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -19,6 +19,13 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="/static/js/datatable.js"></script>
     <![endif]-->
 
     <style>
@@ -119,7 +126,6 @@
         }
     </script>
 </nav>
-
 <nav class="navbar navbar-light" style="width: 500px; margin: auto">
     <div></div>
     <div></div>
@@ -129,44 +135,46 @@
     <div></div>
 </nav>
 <main class="container">
-    <h4>Onay Bekleyenler</h4>
+    <h4>Tüm Bilimsel Bildiriler</h4>
     <div class="table table-bordered">
         <table class="table table-hover">
             <thead>
             <tr>
-                <th class="col">Ad</th>
-                <th class="col">Soyad</th>
-                <th class="col">Email</th>
-                <th class="col"></th>
-                <th class="col"></th>
+                <th class="col">Bildiri Adı</th>
+                <th class="col">Yazar</th>
+                <th class="col">Yıl</th>
                 <th class="col"></th>
             </tr>
             </thead>
             <tbody>
-            <tr th:if="${pendingApproval.isEmpty()}">
-                <td colspan="2">Şu an onay bekleyen kullanıcı bulunmamaktadır. </td>
-            </tr>
-            <tr th:each="pa: ${pendingApproval}">
-                <td th:text="${pa.name}">Table cell</td>
-                <td th:text="${pa.surname}">Table cell</td>
-                <td th:text="${pa.email}">Table cell</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <form th:action="'/admin/onayBekleyenler/confirm/'+ ${pa.id}" th:method="post">
-                        <button class="btn btn-success" type="submit" style="background-color: #003C70">
-                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Onayla
-                        </button>
-                    </form>
-                </td>
-                <td>
-                    <form th:action="'/admin/onayBekleyenler/delete/'+ ${pa.id}" th:method="post">
-                        <button class="btn btn-danger" type="submit">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Reddet
-                        </button>
-                </form>
+            <tr th:each="bildiri: ${bildiriler}">
+                <td th:text="${bildiri.baslik}">Table cell</td>
+                <td th:text="${bildiri.yazar}">Table cell</td>
+                <td th:text="${bildiri.yil}">Table cell</td>
+                <td><a class="btn btn-default" data-toggle="modal" data-target="#exampleModalCenter"
+                       th:attr="data-target= '#exampleModalCenter' + ${bildiri.bildiriId}">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Detay</a>
+                    <div class="modal fade" th:id="exampleModalCenter + ${bildiri.bildiriId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Bildiri Detayı</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-left" th:text="'Bildiri Başlığı: ' + ${bildiri.baslik}"></p>
+                                    <p class="text-left" th:text="'Yazar: ' + ${bildiri.yazar}"></p>
+                                    <p class="text-left" th:text="'Yıl: ' + ${bildiri.yil}"></p>
+                                    <p class="text-left" th:text="'Konferans: ' + ${bildiri.konferans}"></p>
+                                    <p class="text-left" th:text="'Şehir: ' + ${bildiri.sehir}"></p>
+                                    <p class="text-left" th:text="'Ülke: ' + ${bildiri.ulke}"></p>
+                                    <p class="text-left" th:text="'Bildirinin Konusu: ' + ${bildiri.konu}"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" style="background-color: #003C70" data-dismiss="modal">Kapat</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             </tbody>

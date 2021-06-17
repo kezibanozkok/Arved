@@ -22,5 +22,4 @@ public class StaffInformation {
     private int scopusHIndex;
     private int scopusAtifSayisi;
     private String uzmanlikAlani;
-
 }

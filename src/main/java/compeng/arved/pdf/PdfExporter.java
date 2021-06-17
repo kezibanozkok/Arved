@@ -18,12 +18,12 @@ import com.lowagie.text.Image;
 import java.io.IOException;
 import java.util.List;
 
-public class ArticlePdfExporter {
+public class PdfExporter {
     private final List<Article> articles;
     private final List<Project> projects;
     private final List<Bildiri> bildiriList;
 
-    public ArticlePdfExporter(List<Article> articles, List<Project> projects, List<Bildiri> bildiriList) {
+    public PdfExporter(List<Article> articles, List<Project> projects, List<Bildiri> bildiriList) {
         this.articles = articles;
         this.projects = projects;
         this.bildiriList = bildiriList;
@@ -527,7 +527,7 @@ public class ArticlePdfExporter {
         document.add(articleTable);
 
         boolean newPage = document.newPage();
-        System.out.println("new page is created? : " + newPage);
+        //System.out.println("new page is created? : " + newPage);
 
         PdfPTable projectTable = new PdfPTable(14);
         projectTable.setWidthPercentage(100f);

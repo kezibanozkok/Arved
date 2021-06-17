@@ -46,10 +46,4 @@ public class ProjectController {
         projectService.deleteById(projeId);
         return "redirect:/home";
     }
-
-    /*@GetMapping("/allProjects")
-    public String getAllProjects(Model model) {
-        model.addAttribute("projects", projectService.getAllProjects());
-        return "allProjects";
-    }*/
 }

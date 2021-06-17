@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface BildiriService {
     List<Bildiri> getUserBildiri(Authentication authentication);
+    List<Bildiri> getAllBildiri();
     Bildiri save(Bildiri bildiri);
     void add(BildiriPayload bildiriPayload, Authentication authentication);
     void update(BildiriPayload bildiriPayload, String bildiriId);

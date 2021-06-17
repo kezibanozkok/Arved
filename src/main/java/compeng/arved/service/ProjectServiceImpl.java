@@ -39,10 +39,10 @@ public class ProjectServiceImpl implements ProjectService{
         return projectRepository.findAll();
     }
 
-    @Override
+    /*@Override
     public List<Project> getProjectsByUserId(String userId) {
         return projectRepository.findProjectByUserId(userId);
-    }
+    }*/
 
     @Override
     public Project save(Project project) {
@@ -99,10 +99,10 @@ public class ProjectServiceImpl implements ProjectService{
         projectRepository.deleteProjectByProjeId(projeId);
     }
 
-    @Override
+    /*@Override
     public Optional<Project> findById(String id) {
         return projectRepository.findById(id);
-    }
+    }*/
 
     @Override
     public List<Project> getReport(String projeYil, boolean kurumIciProje, boolean uluslararasi, boolean kontratliProje) {

@@ -1,6 +1,5 @@
 package compeng.arved.service;
 
-import compeng.arved.domain.Article;
 import compeng.arved.domain.Bildiri;
 import compeng.arved.domain.User;
 import compeng.arved.payload.BildiriPayload;
@@ -35,6 +34,11 @@ public class BildiriServiceImpl implements BildiriService{
     }
 
     @Override
+    public List<Bildiri> getAllBildiri() {
+        return bildiriRepository.findAll();
+    }
+
+    @Override
     public Bildiri save(Bildiri bildiri) {
         return bildiriRepository.save(bildiri);
     }
@@ -58,8 +62,9 @@ public class BildiriServiceImpl implements BildiriService{
 
         if (optionalUser.isPresent()) {
             userId = optionalUser.get().getId();
-            Bildiri bildiri = new Bildiri(null, bildiriId, userId, bildiriPayload.getBaslik(), bildiriPayload.getYazar(), bildiriPayload.getKonferans(),
-                    bildiriPayload.getUlke(), bildiriPayload.getSehir(), bildiriPayload.getYil(), bildiriPayload.getKonu());
+            Bildiri bildiri = new Bildiri(null, bildiriId, userId, bildiriPayload.getBaslik(),
+                    bildiriPayload.getYazar(), bildiriPayload.getKonferans(), bildiriPayload.getUlke(),
+                    bildiriPayload.getSehir(), bildiriPayload.getYil(), bildiriPayload.getKonu());
             bildiriRepository.save(bildiri);
         }
     }
@@ -86,5 +91,4 @@ public class BildiriServiceImpl implements BildiriService{
     public List<Bildiri> getReport(String bildiriYil) {
         return bildiriRepository.findBildirisByYil(bildiriYil);
     }
-
 }

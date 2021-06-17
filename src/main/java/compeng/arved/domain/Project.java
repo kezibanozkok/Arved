@@ -30,5 +30,4 @@ public class Project {
     private boolean uluslararasiIsbirlikli;
     private String arastirmaciSayisi;
     private String projeYurutucusu;
-    //private String projeninAmaci;
 }

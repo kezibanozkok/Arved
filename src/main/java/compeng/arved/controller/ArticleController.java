@@ -45,10 +45,4 @@ public class ArticleController {
         articleService.deleteById(makaleId);
         return "redirect:/home";
     }
-
-    /*@GetMapping("/allArticles")
-    public String getAllArticles(Model model) {
-        model.addAttribute("articles", articleService.getAllArticles());
-        return "allArticles";
-    }*/
 }
